@@ -1,11 +1,8 @@
 # from flask import Flask
-
 # app = Flask('app')
-
 # @app.route('/')
 # def hello_world():
 #   return 'Hello, World!'
-
 # app.run(host='0.0.0.0', port=8080)
 
 #Declaration
@@ -25,9 +22,10 @@
 # f = input("Please provide your Farenheit: ")
 # print(f, type(f))
 # c = (float(f) - 32) * 5 / 9
-# print("The " + f + "°F is " + str(c) + "°C")
+# print("The " + f + "°F is " + str(c) + "°C") # difficult readability
 
-# print(f"The {f}°F is {c}°C")
+# DX = Developer's Experience
+# print(f"The {f}°F is {c}°C") # more easily readable
 # {} = Interpolation
 # f = f string
 
