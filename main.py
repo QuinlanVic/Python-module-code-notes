@@ -37,7 +37,7 @@ currentyear = datetime.date.today().year
 age = currentyear - int(birth_year)
 
 print(
-    f"The current year is {currentyear} - the year you were born which is {birth_year}, so your current age is {age}"
+    f"The current year is {currentyear} - the year you were born {birth_year}, so your current age is {age}"
 )
 
 # print(f"Your age is {currentyear} - int(birth_year)")
