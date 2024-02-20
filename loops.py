@@ -42,7 +42,7 @@ powered_up_stats = [stat * 2 for stat in player_stats]  # creates a copy
 print(powered_up_stats, player_stats)
 
 avengers = [
-    "Hulk,",
+    "Hulk",
     "Iron man",
     "Black widow",
     "Captain america",
@@ -52,3 +52,13 @@ avengers = [
 
 leneachword = [len(super) for super in avengers]
 print(leneachword)
+
+# give me superheros with more than 10 chars
+# ["Black widow", "Captain america"]
+leneachword = [len(super) for super in avengers]
+print(leneachword)
+avengerslong = []
+for i in avengers:
+  if len(i) > 10:
+    avengerslong.append(i)
+print(avengerslong)
