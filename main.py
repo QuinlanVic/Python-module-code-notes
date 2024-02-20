@@ -30,12 +30,15 @@
 # f = f string
 
 # Find the age of the person if the birth age is given e.g. 2000 = 24
-# import datetime
-# birth_year = input("What year were you born? ")
-# currentyear = datetime.date.today().year
-# age = currentyear - int(birth_year)
+import datetime
 
-# print(f"The current year is {currentyear} - the year you were born which is {birth_year}, so your current age is {age}")
+birth_year = input("What year were you born? ")
+currentyear = datetime.date.today().year
+age = currentyear - int(birth_year)
+
+print(
+    f"The current year is {currentyear} - the year you were born which is {birth_year}, so your current age is {age}"
+)
 
 # print(f"Your age is {currentyear} - int(birth_year)")
 
