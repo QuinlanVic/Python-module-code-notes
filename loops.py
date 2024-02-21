@@ -35,7 +35,8 @@ player_stats = [10, 30, 60]
 #   print(x)  # prints each value in the list
 
 # List comprehension!!!!!!!!!!!!!!!!!!!
-powered_up_stats = [stat for stat in player_stats]  # creates a copy (does not mutate original list)
+# creates a copy (does not mutate original list)
+powered_up_stats = [stat for stat in player_stats]  
 print(powered_up_stats)
 
 powered_up_stats = [stat * 2 for stat in player_stats]  # creates a copy

@@ -54,7 +54,7 @@ inventory = [
 # inventory.append(new_product)
 # print(inventory)
 
-# Task 2: If exists then Update quantity & price & Task 3: Not Exist Add to the Inventory
+# Task 2: If exists then Update quantity & price & Task 3: Not Exist Add to Inventory
 # What is the product name? Apple
 # What is the quantity? 40
 # What is the price? 0.4
@@ -119,10 +119,69 @@ blacklist = ["Dave", "Eve"]
 # People who are 21 or above and VIP123
 # Blacklist people are not allowed
 # ['Alice', 'Charlie']
-acceptable = []
-for guest in guests:
-  if (guest["name"] in blacklist or guest["age"] < 21 or guest["code"] != "VIP123"):
-    continue 
-  else:
-    acceptable.append(guest["name"])
-print(acceptable)
+
+# PEP - Python Enhancement Proposals
+
+# acceptable = []
+# # CONSTANT_CASE
+# PASS_CODE = "VIP123"
+# # check if bad
+# for guest in guests:
+#   if (guest["name"] in blacklist or guest["age"] < 21 or guest["code"] != PASS_CODE):
+#     continue 
+#   else:
+#     acceptable.append(guest["name"])
+# print(acceptable)
+
+# # check if good
+# acceptable2 = []
+# for guest in guests:
+#   if (guest["name"] not in blacklist and guest["age"] >= 21 
+#       and guest["code"] == PASS_CODE):
+#      acceptable2.append(guest["name"])
+# print(acceptable2)
+
+# # List comprehension check if good
+# acceptable3 = [guest["name"] for guest in guests if (guest["name"] not in blacklist 
+#               and guest["age"] >= 21 and guest["code"] == PASS_CODE)
+#               ] 
+# print(acceptable3)
+
+# nums = [90, 50, 80]
+# # enumerate gives you both the index and value (a list of tuples)
+# # for num in enumerate(nums):
+# #   print(num)
+# print(list(enumerate(nums)))
+
+# for idx, num in enumerate(nums):
+#   print(idx, num)
+
+# 2023
+employees = [
+  {"name": "Alex", "experience": 2},
+  {"name": "Gemma"},
+  {"name": "Rashay", "experience": 4},
+  {"name": "Thato"}
+]
+
+# 2024
+# Expected Output
+# employees = [
+#   {"name": "Alex", "experience": 3},
+#   {"name": "Gemma", "experience": 1},
+#   {"name": "Rashay", "experience": 5},
+#   {"name": "Thato", "experience": 1}
+# ]
+print(employees)
+
+# Task 1 and 2
+for employee in employees:
+  if employee.get('experience') is None:
+    employee['experience'] = 1
+  else: 
+    employee['experience'] += 1
+print(employees)
+
+# Task 3
+employees = [employee['experience'] = 1 if employee.get('experience') is None else employee['experience'] += 1 for employee in employees]
+
