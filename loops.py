@@ -18,23 +18,23 @@
 # for curr in range (0, 25, 2):
 #   print(curr)
 
-rows2 = int(input("How many rows would you like? "))
-for k in range(rows2):
-  print("😍" * (k + 1))
-  k += 1
+# rows2 = int(input("How many rows would you like? "))
+# for k in range(rows2):
+#   print("😍" * (k + 1))
+#   k += 1
 
-# Task
+# # Task
 player_stats = [10, 30, 60]
-player_stats_dbl = player_stats.copy()
-for i in range(len(player_stats_dbl)):
-  # player_stats_dbl[i] = player_stats_dbl[i] * 2
-  player_stats_dbl[i] *= 2
-print("Power Up:", player_stats_dbl, player_stats)
+# player_stats_dbl = player_stats.copy()
+# for i in range(len(player_stats_dbl)):
+#   # player_stats_dbl[i] = player_stats_dbl[i] * 2
+#   player_stats_dbl[i] *= 2
+# print("Power Up:", player_stats_dbl, player_stats)
 
-for x in player_stats:
-  print(x)  # prints each value in the list
+# for x in player_stats:
+#   print(x)  # prints each value in the list
 
-# List comprehension
+# List comprehension!!!!!!!!!!!!!!!!!!!
 powered_up_stats = [stat for stat in player_stats]  # creates a copy (does not mutate original list)
 print(powered_up_stats)
 
@@ -63,3 +63,9 @@ for i in avengers:
   if len(i) > 10:
     avengerslong.append(i)
 print(avengerslong)
+
+# make in one line? -> LIST COMPREHENSION
+filtered_names = [avenger for avenger in avengers if len(avenger) > 10]
+filtered_names_upper = [avenger.upper() for avenger in avengers if len(avenger) > 10]
+print(filtered_names, filtered_names_upper)
+
