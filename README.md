@@ -1,4 +1,4 @@
-# HTTP 2 vs HTTP 3
+# **HTTP 2 vs HTTP 3**
 ## SDDA – 19 February 2024 
 ### By: Quinlan Caiger
 HTTP/3 provides TLS encryption by default whereas HTTP/2 provides it as an optional feature. This extra security reduces the risks of the CIA triad being compromised such as through eavesdropping and MITM attacks. 
@@ -11,4 +11,4 @@ HTTP/3 provides TLS encryption by default whereas HTTP/2 provides it as an optio
 - Zero RTT connection establishment in specific situations (if already connected to a server you can skip the TCP handshake)
 - Improved congestion control through advanced mechanisms
 
-HTTP/3 sounds nice in theory but is difficult to implement with compatibility issues surrounding networks.
+HTTP/3 sounds great in theory but is difficult to implement with compatibility issues surrounding networks.
