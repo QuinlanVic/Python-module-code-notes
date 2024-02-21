@@ -51,7 +51,7 @@ print(id(price_list), id(price_list2))
 subjects = ["maths", "science", "eng"]
 print(", ".join(subjects)) # returns a string
 
-subjects.sort() # mutates list
+subjects.sort() # mutates list (sorts in place)
 print(subjects)
 subjects.sort(reverse=True)
 print(subjects)

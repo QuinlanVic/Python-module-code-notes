@@ -14,12 +14,12 @@ stock3 = "chocolate"
 
 # Task 2
 shop_stock = "vanilla, lime, chocolate"
-# in operator | membership operator | boolean
+# in operator | membership operator | boolean !!!!!!!!!!!!!!!!!!!!
 if (flavourasked in shop_stock): 
   print("yes, we do have it")
 else:
   print("No, we ran out of stock")
-# refactor -> Code Quality (up)
+# refactor -> Code Quality (up) = Ternary Operator
 result = "yes, we do have it" if flavourasked in shop_stock else "No, we ran out of stock"
 print(result)
 
@@ -32,8 +32,9 @@ print(result)
 # arithmatic and comparison and logical operators (except not)
 #  = assignment operator
 
-# Unary operator (1 operand)
+# Unary operator (1 operand) (applied on one operand)
 # not, ~
+# flips all the bits of the float 32-bit representation
 
 # Binary numbers
 # 1 -> 1

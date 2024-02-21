@@ -35,7 +35,7 @@ for x in player_stats:
   print(x)  # prints each value in the list
 
 # List comprehension
-powered_up_stats = [stat for stat in player_stats]  # creates a copy
+powered_up_stats = [stat for stat in player_stats]  # creates a copy (does not mutate original list)
 print(powered_up_stats)
 
 powered_up_stats = [stat * 2 for stat in player_stats]  # creates a copy
@@ -57,6 +57,7 @@ print(leneachword)
 # ["Black widow", "Captain america"]
 leneachword = [len(super) for super in avengers]
 print(leneachword)
+
 avengerslong = []
 for i in avengers:
   if len(i) > 10:
