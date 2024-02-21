@@ -174,14 +174,89 @@ employees = [
 # ]
 print(employees)
 
-# Task 1 and 2
+# Task 1
+# for employee in employees:
+#   if employee.get('experience') is None:
+#     employee['experience'] = 1
+#   else: 
+#     employee['experience'] += 1
+# print(employees)
+
+# Task 2
 for employee in employees:
-  if employee.get('experience') is None:
-    employee['experience'] = 1
-  else: 
-    employee['experience'] += 1
+  employee["experience"] = employee.get("experience", 0) + 1 # need to give default value
 print(employees)
 
 # Task 3
-employees = [employee['experience'] = 1 if employee.get('experience') is None else employee['experience'] += 1 for employee in employees]
+# employees = [employee['experience'] = 1 if employee.get('experience') is None 
+# else employee['experience'] += 1 for employee in employees]
+# Senior 5 or more, mid-level 3 to 5, Junior < 3
+# Expected Output
+# employees = [
+#   {"name": "Alex", "experience": 3, status: "Mid-Level"},
+#   {"name": "Gemma", "experience": 1, status: "Junior"},
+#   {"name": "Rashay", "experience": 5, status: "Senior"},
+#   {"name": "Thato", "experience": 1, status: "Junior"}
+# ]
 
+# for employee in employees:
+#   if employee.get('experience', 0) < 3:
+#     employee['status'] = "Junior"
+#   elif employee.get('experience', 0) < 5: 
+#     employee['status'] = "Mid-Level"
+#   else:
+#     employee['status'] = "Senior"
+# print(employees)
+
+for employee in employees:
+  experience = employee['experience']
+  if experience < 3:
+    employee['status'] = "Junior"
+  elif experience < 5: 
+    employee['status'] = "Mid-Level"
+  else:
+    employee['status'] = "Senior"
+print(employees)
+
+# Copy
+movie = {
+  "name": "Mr Bones",
+  "year": 2001
+}
+
+# Make copy of dicitonary
+movie_copy1 = movie.copy()
+
+# Unpacking Operator * -> List | ** -> Dictionaries
+movie_copy2 = {**movie, "rating": 10}
+print(movie_copy2)
+
+movie_copy3 = {**movie, "rating":10, "year": 2002} # last "year" overrides previous one
+print(movie_copy3)
+
+movie_copy4 = {"rating":10, "year": 2002, **movie} # last "year" overrides previous one
+# the unpacking is like this
+# {"rating": 10, "year":2002, "name": "Mr Bones", "year":2001} (2001 overrides!)
+print(movie_copy4)
+
+detail = {
+  "actor": "Leon Schuster",
+  "director": "Dzithendo"
+}
+# Concatenate dictionaries into one using copies
+movie_details = {**movie, **detail}
+print(movie_details)
+
+price = [1000, 1200, 400]
+price_copy = [*price] # copy with one star as it is a list
+# print(price_copy)
+# UNPACKING OPERATOR!
+price_copy1 = [50, 40, *price, 60]
+print(price_copy, price_copy1)
+
+t1 = [80, 90]
+t2 = [50, 60]
+t3 = t1 + t2
+print(t3)
+t3 = [*t1, *t2]
+print(t3) 
