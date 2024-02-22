@@ -15,14 +15,17 @@
 # print(gemma) 
 
 # t1, t2, t3 = [100, 200, 300, 400] # error = too many values to unpack
-# t1, t2, t3, _ = [100, 200, 300, 400]
-# print(t1, t2, t3) # _ -> skip (ignore) [wildcard character]
+t1, t2, t3, _ = [100, 200, 300, 400]
+print(t1, t2, t3) # _ -> skip (ignore) [wildcard character]
 
-# t1, t2, *t3 = [100, 200, 300, 400, 60, 40, 30] # "*" = unpacking operator -> (list) 
-# print(t1, t2, t3) 
-
-# t1, t2, *t3 = (100, 200, 300, 400, 60, 40, 30) # "*" = unpacking operator -> (list again) 
-# print(t1, t2, t3)
+t1, t2, *t3 = [100, 200, 300, 400, 60, 40, 30] # "*" = unpacking operator -> (list) 
+print(t1, t2, t3) 
+# "*" = unpacking operator -> (tuple -> list)
+t1, t2, *t3 = (100, 200, 300, 400, 60, 40, 30)  
+print(t1, t2, t3)
+# Just get 100, 200 and 30, skip multiple items inbetween
+t1, t2, *t3, t4 = (100, 200, 300, 400, 60, 40, 30) # or "*_"
+print(t1, t2, t4)
 
 # Task 1
 coordinates = [(5, 4), (1,1), (6, 10), (9, 10)] # list of tuples (int)
