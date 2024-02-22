@@ -124,7 +124,7 @@ blacklist = ["Dave", "Eve"]
 
 # acceptable = []
 # # CONSTANT_CASE
-# PASS_CODE = "VIP123"
+PASS_CODE = "VIP123"
 # # check if bad
 # for guest in guests:
 #   if (guest["name"] in blacklist or guest["age"] < 21 or guest["code"] != PASS_CODE):
@@ -142,10 +142,10 @@ blacklist = ["Dave", "Eve"]
 # print(acceptable2)
 
 # # List comprehension check if good
-# acceptable3 = [guest["name"] for guest in guests if (guest["name"] not in blacklist 
-#               and guest["age"] >= 21 and guest["code"] == PASS_CODE)
-#               ] 
-# print(acceptable3)
+acceptable3 = [guest["name"] for guest in guests if (guest["name"] not in blacklist 
+              and guest["age"] >= 21 and guest["code"] == PASS_CODE)
+              ] 
+print(acceptable3)
 
 # nums = [90, 50, 80]
 # # enumerate gives you both the index and value (a list of tuples)
@@ -184,7 +184,8 @@ print(employees)
 
 # Task 2
 for employee in employees:
-  employee["experience"] = employee.get("experience", 0) + 1 # need to give default value
+  # need to give default value for safety
+  employee["experience"] = employee.get("experience", 0) + 1 
 print(employees)
 
 # Task 3
@@ -243,7 +244,7 @@ detail = {
   "actor": "Leon Schuster",
   "director": "Dzithendo"
 }
-# Concatenate dictionaries into one using copies
+# Concatenate dictionaries into one using copies!!!!
 movie_details = {**movie, **detail}
 print(movie_details)
 

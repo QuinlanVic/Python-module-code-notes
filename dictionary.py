@@ -68,18 +68,21 @@ print(person.get('height')) # 186
 
 # get('key', default_value)
 print(person.get('height', 175)) # 186 (has height so default value not printed)
-# print(person['address'].get('city'))
-print(person['address']['city'])
+# print(person['address']['city']) # not safe, need to give default value if no address
+# print(person['address', {}].get('city')) # safe now, if no address -> None
+
 
 print(person.get('stats'))
 # None.get('points')
 # print(person.get('stats').get('points')) 
-# AttributeError: 'NoneType' object has no attribute 'get'
+# AttributeError: 'NoneType' object has no attribute 'get'!!!!
 # Fix -> give empty dicitonary value which has get available
 print(person.get('stats', {}).get('points')) # None
+# print(person.get('stats', {}).get('points', 'No points data')) # No points data
 
 # Dictionary Comprehension!!!!
-
+# Different to list comprehension with "{}" instead of "[]" and 
+# uses ":" notation to return a dictionary
 nums = {x: x ** 2 for x in range(10) if x % 2 == 0}
 print(nums)
 

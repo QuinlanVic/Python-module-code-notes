@@ -23,7 +23,7 @@ else:
 result = "yes, we do have it" if flavourasked in shop_stock else "No, we ran out of stock"
 print(result)
 
-# Ternary operator (3 operands)
+# Ternary operator (3 operands)!!!!
 # ___ if condition else ___
 
 # Binary operator (2 operands)
