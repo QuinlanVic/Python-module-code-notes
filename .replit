@@ -1,4 +1,4 @@
-entrypoint = "day4_lambdas.py"
+entrypoint = "hotelroombookingsystem.py"
 modules = ["python-3.10:v18-20230807-322e88b"]
 
 [nix]
