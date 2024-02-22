@@ -41,8 +41,9 @@ def driving_test(name, age=15, car="Toyota tazz"):
 # print(driving_test("Gemma", 20))
 
 # Types of argument
-# Position argument
-# Keyword arguments!!!!
-print(driving_test(age=21, name="Tina")) 
-print(driving_test("Gemma"))
+# Position argument (normal, based on order/position of argument)
+# Keyword arguments (give keyword="parameter")!!!!
+print(driving_test(age=21, name="Tina")) # order does not matter (keyword argument)
+print(driving_test("Gemma")) # order matters (position argument)
 # [9, 3, 8].sort(reverse=True)
+
