@@ -15,10 +15,11 @@ def square (x):
   return x * x
 # map accepts normal and lambda functions to apply to each list element 
 boosted_stats = map(square, player_stats) 
-# returns a map object (always same length as og list input)
+# returns a map object (always same length as og list input) (copy of list)
 print(list(boosted_stats)) # have to convert map constructor into list
 boosted_stats = map(lambda x: x*x, player_stats) 
-print(list(boosted_stats)) # have to convert map object into list using list constructor
+print(list(boosted_stats)) 
+# have to convert map object into list using list constructor (list takes up more memory)
 # The function that filter accepts must return a boolean. 
 # Returns an iterable of elements that obey the condition (max = length of list)
 result = filter(lambda x: x > 10, [10, 50, 60, 100, 6, 8, 30])
@@ -110,3 +111,5 @@ if (x):
   print('cool')
 else:
   print('super')
+
+# All Sequences are Iterable
