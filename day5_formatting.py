@@ -37,3 +37,9 @@ print(f"{person:$^20}:")
 caleb = 0.925
 # % symbol indicates that it is a percentage!
 print(f"The test results are out and Caleb got {caleb:.2%}")
+
+# Multi line - keeps same format
+about_me = """
+Hi, my name is Quinlan and i am feeling ok hehe slay :) I am not sure when it will cut off onto the next line so I will keep typing until I cry hehe. I am glad I passed lol, yoh that was scary omfg. I hope I never fail because yoh that's crazy. 70%? Hebana bruh 
+"""
+print(about_me)

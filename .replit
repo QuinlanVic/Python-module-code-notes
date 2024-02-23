@@ -1,4 +1,4 @@
-entrypoint = "day5_formatting_ex.py"
+entrypoint = "event_reg_ex.py"
 modules = ["python-3.10:v18-20230807-322e88b"]
 
 [nix]
