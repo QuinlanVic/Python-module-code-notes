@@ -6,8 +6,8 @@ print(add(6,7))
 # Functions are treated as first class citizens (value)
 
 # 1. Assign a function to a variable
-# 2. Pass a function as an argument
-# 3. Return a function
+# 2. Pass a function as an argument to a function
+# 3. A function can return another function
 
 player_stats = [10, 30, 60]
 
@@ -15,9 +15,13 @@ def square (x):
   return x * x
 # map accepts normal and lambda functions to apply to each list element 
 boosted_stats = map(square, player_stats) 
+# returns a map object (always same length as og list input)
 print(list(boosted_stats)) # have to convert map constructor into list
 boosted_stats = map(lambda x: x*x, player_stats) 
-print(list(boosted_stats)) # have to convert map constructor into list
+print(list(boosted_stats)) # have to convert map object into list using list constructor
+# The function that filter accepts must return a boolean. 
+# Returns an iterable of elements that obey the condition (max = length of list)
+result = filter(lambda x: x > 10, [10, 50, 60, 100, 6, 8, 30])
 
 # if a function is not going to be reused then use lambda 
 

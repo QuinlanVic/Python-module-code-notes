@@ -15,6 +15,7 @@ print(tech_gadgets_list)
 tech_gadgets.add('E-reader')
 print(tech_gadgets)
 
+# add multiple values to set
 more_gadgets = ['Drone', 'Selfiestick']
 tech_gadgets.update(more_gadgets)
 print(tech_gadgets)
@@ -32,18 +33,19 @@ print(tech_gadgets)
 
 outdoor_activities = {'Hiking', 'Cycling', 'Swimming'}
 indoor_activities = {'Gaming', 'Reading', 'Cycling'}
-
+# Common items between sets
 print("Intersection")
 print(indoor_activities.intersection(outdoor_activities))
-print("Union")
+print("Union") # all items from both sets together
 print(indoor_activities.union(outdoor_activities))
 # Different perspectives
-print("Difference")
+print("Difference") # what items in 1st set is diff. to second
 print(indoor_activities.difference(outdoor_activities)) # {'Gaming', 'Reading'}
 print(outdoor_activities.difference(indoor_activities)) # {'Swimming', 'Hiking'}
 
 # opposite of intersection
-print("Symmetric difference")
+print("Symmetric difference") # differences put together
+ # {'Gaming', 'Reading', 'Hiking', 'Swimming'}
 print(indoor_activities.symmetric_difference(outdoor_activities))
 
 colors = ["red", "blue", "red", "green", "pink", "blue"]
@@ -80,6 +82,7 @@ activity_gadgets = {'Smartwatch': 'Hiking', 'VR Headset': 'Gaming', 'Smartphone'
 # List comprehension!
 # print("List comprehension way")
 outdoor_gadgets2 = {key for key, value in activity_gadgets.items() if value in outdoor_activities}
+# ".items()" = view object (key-value pairs to unpack)
 print("Outdoor gadgets:", outdoor_gadgets2)
 
     
