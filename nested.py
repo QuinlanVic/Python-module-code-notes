@@ -19,10 +19,12 @@ classes = {
 # }
 averageforclasslist = []
 finalaverages = []
-for classroom in classes:
-  for person in classroom:
-    averageforclasslist.append(sum(person["grades"]) / len(person["grades"]))
-  finalaverages.append()
+for key, value in classes: 
+  for val in value:
+    print(type(val))
+    # averageforclasslist.append(sum(person["grades"]) /
+    #                           len(person["grades"]))
+  # finalaverages.append()
 
 # Task 2
 # Student name's unique
@@ -39,7 +41,7 @@ for classroom in classes:
 #     "frank": 95
 #   }
 # }
-averageforeachperson = {} 
-for classroom in classes:
-  for person in classroom:
-    averageforclasslist.append(sum(person["grades"]) / len(person["grades"]))
+# averageforeachperson = {} 
+# for classroom in classes:
+#   for person in classroom:
+#     averageforclasslist.append(sum(person["grades"]) / len(person["grades"]))
