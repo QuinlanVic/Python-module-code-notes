@@ -1,3 +1,4 @@
+from pprint import pprint
 movies = [
   {"title": "Inception", "ratings": [5, 4, 5, 4, 5]},
   {"title": "Interstellar", "ratings": [5, 5, 4, 5, 4]},
@@ -5,6 +6,15 @@ movies = [
   {"title": "The Dark Knight", "ratings": [5, 5, 5, 5, 5]},
   {"title": "Memento", "ratings": [4, 5, 4, 5, 4]},
 ]
+
+# "map" and "filter" are sequence functions (can only be applied to sequences)
+# Anything you can loop is an iterable
+# All sequences are iterable but not the other way around
+
+# 3 map rules
+# 1. Number of items in input and output list = same
+# 2. Want to transform data type
+# 3. Returns a copy of the list
 
 # Task 1 - Find average for all - map, filter, all, ...
 # Dont use for loop or List comp
@@ -42,6 +52,18 @@ print(list(map(lambda movie: movie["title"], highlyratedmovies)))
 # Task 4
 # movie names in order of rating
 # ['The Dark Knight', 'Inception', 'Interstellar', 'Memento', 'Dunkirk']
-ratingordered = sorted(averageratingsaddition, key=lambda movie: movie["average_rating"], reverse=True)
+# reverse in descending order
+# ratingordered = sorted(averageratingsaddition, key=lambda movie: movie["average_rating"], reverse=True)
 # print(type(ratingordered))
-print(list(map(lambda movie: movie["title"], ratingordered)))
+# slice ratingordered if you want top 3 only as it is sorted already
+# print(list(map(lambda movie: movie["title"], ratingordered)))
+# Task 5 (top 3 and string output)
+# "sorted" returns a new list!
+ratingordered2 = sorted(averageratingsaddition, key=lambda movie: movie["average_rating"], reverse=True)
+ratingordered_titles = map(lambda movie: movie["title"], ratingordered2)
+print(list(ratingordered_titles))
+ratingordered_titles_top3 = list(ratingordered_titles)[0:3]
+print(ratingordered_titles_top3)
+# print(", ".join(ratingordered_titles_top3))
+pprint(movies)
+pprint(list(ratingordered2))

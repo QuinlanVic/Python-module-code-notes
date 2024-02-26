@@ -32,5 +32,6 @@ party_date = datetime(2024, 3, 14)
 # You are invited to the party on March 14, 2024!
 for guest in guests:
   print(f"*{guest:^19}*")
-  print(f"You are invited to the party on {party_date:%B %d, %Y}!")
+  # full month name, number of day and full name year
+  print(f"You are invited to the party on {party_date:%B %d, %Y}!") 
   
