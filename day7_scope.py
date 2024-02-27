@@ -66,6 +66,7 @@ fun() # [10, 10, 10]
 fun() # [10, 10, 10]
 # Why? = the nums variable default value will share the same reference 
 
+# Safer to have immutable default value as 
 print("fun2")
 def fun2(nums2=()):
     if nums2 == ():
@@ -101,3 +102,4 @@ x3 = x1
 print(x1 == x2) # True -> checks if values are the same
 print(x1 is x2) # False -> checks if memory addresses are the same
 print(x1 is x3) # True
+
