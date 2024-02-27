@@ -2,6 +2,8 @@
 # ctrl + shift + p -> command
 # ctrl + p -> find file
 
+# VS Code and Discord is chrome????
+
 price = 100
 
 # Scope = lifetime of a variable
@@ -64,14 +66,38 @@ fun() # [10, 10, 10]
 fun() # [10, 10, 10]
 # Why? = the nums variable default value will share the same reference 
 
+print("fun2")
 def fun2(nums2=()):
     if nums2 == ():
-        print("[10]")
-    else:
-        nums2.append(10)
-        print(nums2)
+        nums2 = []
+    nums2.append(10)
+    print(nums2)
 
 fun2() # [10]
 fun2() # [10]
 fun2() # [10]
 fun2() # [10]
+fun2([70]) # [70, 10]
+
+print("fun3")
+# Class solution
+# Singleton -> None (one of a kind) (immutable value) 
+def fun3(nums=None):
+    if nums is None:
+        nums = []
+    nums.append(10)
+    print(nums)
+
+fun3() # [10]
+fun3() # [10]
+fun3() # [10]
+fun3() # [10]
+fun3([70]) # [70, 10]
+
+# is vs ==
+x1 = [2,3]
+x2 = [2,3]
+x3 = x1
+print(x1 == x2) # True -> checks if values are the same
+print(x1 is x2) # False -> checks if memory addresses are the same
+print(x1 is x3) # True
