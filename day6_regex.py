@@ -84,3 +84,23 @@ print(hashtags)
 # Output
 ['#sunny', '#California', '#travel', '#fun']
 
+# Classes 
+
+# Open terminal -> ctrl + ~
+# Virtual Environment (fix code breaks with time and updates in new versions)
+# python --version -> 3.10.8
+# code then = print(f"abc [abc]")
+# python --version -> 3.14.1 (In 3 years time)
+# code now = print(f"abc [abc]") # breaking change
+
+# WINDOWS (powershell)
+# command = python -m venv myenv
+# myenv -> copy of python
+# .\myenv\Scripts\Activate.ps1 -> activate my environment -> python -> point to local copy of python
+# (myenv/Scripts/python.exe) = local python version
+# Now you can run any of your python files :)
+# deactivate -> python -> point to global python installed
+
+
+# ctrl + ~ -> Open/Close Terminal
+
