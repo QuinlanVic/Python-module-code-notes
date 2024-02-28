@@ -167,7 +167,7 @@ print(caleb.transactions)
 print(gemma.transactions)
 
 
-# Encapsulation = methods and variables of class all in one place
+# Encapsulation = methods and variables of class all in one place (for objects to be attched to and be able to access)
 class Bank2:
     # Class variable | All your instances share this variables
     interest_rate = 0.02
@@ -335,7 +335,7 @@ class Bank3:
 
     # @classmethod
     # static method -> no cls, self | normal function
-    # when not changing anything in the classes.
+    # when not changing anything in the classes
     # You can have it defined outside but people want to keep things in one place/organised
     @staticmethod
     def get_total_no_accounts():
@@ -451,8 +451,10 @@ class Bank4:
     ):  # what def value to give to transactions? None doesn't work?
         self.accno = accno
         self.name = name
+        # protected variable - can be accessed by subclasses and printed out but not changed
+        self._balance = balance
         # private variable
-        self.__balance = balance
+        # self.__balance = balance
         if numtransactions is None:
             self.numtransactions = 0
         else:
@@ -479,14 +481,14 @@ class Bank4:
     # Task 2
     # instance method | self -> instance/object
     def display_balance(self):
-        return f"Your balance is: R{self.__balance:,}"
+        return f"Your balance is: R{self._balance:,}"
 
     # Task 3
     def withdraw(self, withdrawal):
-        if withdrawal > self.__balance:
-            return f"Insufficient funds (R{self.__balance:,}) to make this withdrawal (R{withdrawal:,})"
+        if withdrawal > self._balance:
+            return f"Insufficient funds (R{self._balance:,}) to make this withdrawal (R{withdrawal:,})"
         else:
-            self.__balance -= withdrawal
+            self._balance -= withdrawal
             # Get today's date
             now = datetime.now()
             format = "%d %b"
@@ -500,7 +502,7 @@ class Bank4:
         if depositamount < 0:
             return f"Invalid deposit amount of R{depositamount:,}"
         else:
-            self.__balance += depositamount
+            self._balance += depositamount
             # Get today's date
             now = datetime.now()
             format = "%d %b"
@@ -521,7 +523,7 @@ class Bank4:
     def apply_interest(self):
         # print(Bank4.interest_rate)
         # use self.interest_rate!
-        self.__balance += self.__balance * self.interest_rate
+        self._balance += self._balance * self.interest_rate
         # return self.__balance
 
     # @classmethod
@@ -533,10 +535,10 @@ class Bank4:
         return f"In total we have {Bank4.totalaccounts} accounts"
 
     def get_balance(self):
-        return self.__balance
+        return self._balance
 
     def update_balance(self, amount):
-        self.__balance += amount
+        self._balance += amount
 
 
 # create 3 accounts
@@ -568,12 +570,30 @@ class SavingsAccount(Bank4):
     #     self.update_balance(self.get_balance() * SavingsAccount.interest_rate)
 
 
+# Magic methods __repr__ , __str__ (dunder methods)
+
+
 class CheckingAccount(Bank4):
     transaction_fee = 1
 
     def withdraw(self, amount):
         # Can do self.transaction_fee to specify th classes transaction_fee
         return super().withdraw(amount + CheckingAccount.transaction_fee)
+
+    # override str()
+    def __str__(self):
+        """For human readble output"""
+        return (
+            f"This account belongs to {self.name} and has balance of R{self._balance:,}"
+        )
+
+    def __repr__(self):
+        """For DX: String -> Class"""
+        return f"CheckngAccount({self.accno}, '{self.name}', {self._balance})"
+
+    # override add
+    def __add__(self, other):
+        return self._balance + other._balance
 
 
 # Task 1
@@ -585,5 +605,27 @@ print(gemma.display_balance())  # 1_050
 # Task 2
 # CheckingAccount - withdraw  R1
 alex = CheckingAccount(126, "Alex Lazarus", 100)
-print(alex.withdraw(50))
-#  49
+caleb = CheckingAccount(125, "Caleb Potts", 100_000)
+print(alex.withdraw(50))  # 49 value
+print(alex)
+# print(alex.__str__())
+# print(str(alex))
+# print(alex.__repr__())
+print(repr(alex))  # preferred syntax
+print(alex + caleb)
+
+# Questions
+# Can you please explain the "self" variable with regards to self.transaction_fee and self.interest_rate with that earlier example
+# What is point of using
+
+# difference between private and protected
+
+
+# Assignment
+# 1. @property,  @balance.setter = explore these and an example
+
+# 2. Creating you own decorator
+# Using function
+# Using classes
+# example and explanation for each way
+# Create error class
