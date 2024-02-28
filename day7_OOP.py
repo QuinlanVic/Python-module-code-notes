@@ -252,8 +252,9 @@ print(caleb.display_balance())
 
 # Encapsulation | Putting it all together in one container | Give access
 class Bank3:
-    # Class variable | All your instances share this variables
+    # Class variable | All your instances share this variable
     interest_rate = 0.02
+    totalaccounts = 0
 
     def __init__(
         self, accno, name, balance, numtransactions=None, transactions=None
@@ -269,8 +270,25 @@ class Bank3:
             self.transactions = []
         else:
             self.transactions = transactions
+        Bank3.totalaccounts += 1
+        print(self.name, Bank3.totalaccounts)
+
+    # class method | cls -> Class
+    @classmethod
+    def update_total_accounts(cls, numaccounts):
+        Bank3.totalaccounts = (
+            numaccounts  # when referring to another class use this way
+        )
+        # cls.totalccounts = numacccounts # when referring to same class use this way
+
+    # class method | cls -> Class
+    @classmethod
+    def update_interest_rate(cls, rate):
+        Bank3.interest_rate = rate  # when referring to another class use this way
+        # cls.interest_rate = rate # when referring to same class use this way
 
     # Task 2
+    # instance method | self -> instance/object
     def display_balance(self):
         return f"Your balance is: R{self.__balance:,}"
 
@@ -316,12 +334,58 @@ class Bank3:
         self.__balance += self.__balance * Bank2.interest_rate
         # return self.balance
 
+    # @classmethod
+    # static method -> no cls, self | normal function
+    # when not changing anything in the classes.
+    # You can have it defined outside but people want to keep things in one place/organised
+    @staticmethod
+    def get_total_no_accounts():
+        return f"In total we have {Bank3.totalaccounts} accounts"
+
 
 # create 3 accounts
 gemma = Bank3(123, "Gemma Porrill", 15_000)
 dhara = Bank3(124, "Dhara Kara", 50_001)
 caleb = Bank3(125, "Caleb Potts", 100_000)
+kenny = Bank3(126, "Ken Kenny", 100)
 
-print(gemma.accno)  # can print this as it's public
+# print(gemma.accno)  # can print this as it's public
 # print(gemma.__balance)  # error | cannot access private variables
 print(gemma.display_balance())
+
+Bank3.update_interest_rate(0.10)
+
+# Apply interest
+kenny.apply_interest()
+print(kenny.display_balance())
+
+# Task
+print(Bank3.get_total_no_accounts())
+
+
+# Task
+class Circle:
+    pi = 3.14159
+
+    # constructor function
+    def __init__(self, radius):
+        self.radius = radius
+
+    def from_diameter(self, diameter):
+        self.radius = diameter / 2
+
+    def calculate_area(self):
+        return f"The area of the circle is: {Circle.pi * (self.radius**2)}"
+
+
+# Task 1
+# Create circle with radius
+circle1 = Circle(2)
+print(circle1.calculate_area())
+# Create circle with diameter
+# circle_from_dia = Circle.from_diameter(10)
+# print(circle_from_dia.calculate_area())
+
+# Task 2
+# static method = plain function inside class
+# Circle.perimeter(10)  # 10 -> radius
