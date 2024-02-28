@@ -4,9 +4,12 @@ from datetime import datetime
 
 now = datetime.now()
 print(now)
+format = "%d %b"
 print(f"The current date is: {now:%d-%m-%Y}")
 print(f"The current date is: {now:%d/%m/%Y}")
 print(f"The current date is: {now:%d %b %y}")
+nicedate = now.strftime(format)
+print(nicedate)
 
 # numeric separator
 salary = 420_000  # python ignores underscores for us :)
