@@ -520,8 +520,9 @@ class Bank4:
 
     def apply_interest(self):
         # print(Bank4.interest_rate)
-        self.__balance += self.__balance * Bank2.interest_rate
-        # return self.balance
+        # use self.interest_rate!
+        self.__balance += self.__balance * self.interest_rate
+        # return self.__balance
 
     # @classmethod
     # static method -> no cls, self | normal function
@@ -531,6 +532,12 @@ class Bank4:
     def get_total_no_accounts():
         return f"In total we have {Bank4.totalaccounts} accounts"
 
+    def get_balance(self):
+        return self.__balance
+
+    def update_balance(self, amount):
+        self.__balance += amount
+
 
 # create 3 accounts
 gemma = Bank4(123, "Gemma Porrill", 15_000)
@@ -538,24 +545,45 @@ dhara = Bank4(124, "Dhara Kara", 50_001)
 caleb = Bank4(125, "Caleb Potts", 100_000)
 kenny = Bank4(126, "Ken Kenny", 100)
 
+# Solution 1
+# class SavingsAccount(Bank4):
+#     interest_rate = 0.05
 
-class SavingsAccount:
-    pass
+#     def __init__(self, accno, name, balance):
+#         super().__init__(accno, name, balance)
+
+#     def apply_interest(self):
+#         self.update_balance(self.get_balance() * SavingsAccount.interest_rate)
 
 
-class CheckingAccount:
-    pass
+# Solution 2
+class SavingsAccount(Bank4):
+    interest_rate = 0.05
+    # can get rid of, don't need to override
+    # def __init__(self, accno, name, balance):
+    #     super().__init__(accno, name, balance)
+
+    # changed apply_interest in Bank4
+    # def apply_interest(self):
+    #     self.update_balance(self.get_balance() * SavingsAccount.interest_rate)
 
 
-# SavingsAccount -  interest_rate = 0.05
+class CheckingAccount(Bank4):
+    transaction_fee = 1
+
+    def withdraw(self, amount):
+        # Can do self.transaction_fee to specify th classes transaction_fee
+        return super().withdraw(amount + CheckingAccount.transaction_fee)
+
 
 # Task 1
+# SavingsAccount -  interest_rate = 0.05
 gemma = SavingsAccount(123, "Gemma Porrill", 1_000)
 gemma.apply_interest()
-gemma.display_balance()  # 1_050
+print(gemma.display_balance())  # 1_050
 
 # Task 2
 # CheckingAccount - withdraw  R1
 alex = CheckingAccount(126, "Alex Lazarus", 100)
-alex(50)
+print(alex.withdraw(50))
 #  49
