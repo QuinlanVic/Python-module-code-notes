@@ -243,6 +243,85 @@ print(gemma.apply_interest())
 print(dhara.apply_interest())
 print(caleb.apply_interest())
 
+# dhara.balance = 900_000 # can update the balance directly which is wrong!
+
 print(gemma.display_balance())
 print(dhara.display_balance())
 print(caleb.display_balance())
+
+
+# Encapsulation | Putting it all together in one container | Give access
+class Bank3:
+    # Class variable | All your instances share this variables
+    interest_rate = 0.02
+
+    def __init__(
+        self, accno, name, balance, numtransactions=None, transactions=None
+    ):  # what def value to give to transactions? None doesn't work?
+        self.accno = accno
+        self.name = name
+        self.__balance = balance
+        if numtransactions is None:
+            self.numtransactions = 0
+        else:
+            self.numtransactions = numtransactions
+        if transactions is None:
+            self.transactions = []
+        else:
+            self.transactions = transactions
+
+    # Task 2
+    def display_balance(self):
+        return f"Your balance is: R{self.__balance:,}"
+
+    # Task 3
+    def withdraw(self, withdrawal):
+        if withdrawal > self.__balance:
+            return f"Insufficient funds (R{self.__balance:,}) to make this withdrawal (R{withdrawal:,})"
+        else:
+            self.__balance -= withdrawal
+            # Get today's date
+            now = datetime.now()
+            format = "%d %b"
+            nicedate = now.strftime(format)
+            self.numtransactions += 1
+            self.statement(self.numtransactions, nicedate, "withdraw", withdrawal)
+            return f"Success. {self.display_balance()}"
+
+    # Task 4
+    def deposit(self, depositamount):
+        if depositamount < 0:
+            return f"Invalid deposit amount of R{depositamount:,}"
+        else:
+            self.__balance += depositamount
+            # Get today's date
+            now = datetime.now()
+            format = "%d %b"
+            nicedate = now.strftime(format)
+            self.numtransactions += 1
+            self.statement(self.numtransactions, nicedate, "deposit", depositamount)
+            return f"Success. {self.display_balance()}"
+
+    # add deposits and withdrawals to the statement as they happen
+    # Statement function assignment
+    def statement(self, idnum, date, transtype, amount):
+        self.transactions.append(
+            {"id": idnum, "Date": date, "Type": transtype, "Amount": amount}
+        )
+        # f"Hi {self.name}, here is your list of transactions:\n" for nice function later
+        return self.transactions
+
+    def apply_interest(self):
+        # print(Bank2.interest_rate)
+        self.__balance += self.__balance * Bank2.interest_rate
+        # return self.balance
+
+
+# create 3 accounts
+gemma = Bank3(123, "Gemma Porrill", 15_000)
+dhara = Bank3(124, "Dhara Kara", 50_001)
+caleb = Bank3(125, "Caleb Potts", 100_000)
+
+print(gemma.accno)  # can print this as it's public
+# print(gemma.__balance)  # error | cannot access private variables
+print(gemma.display_balance())
