@@ -261,6 +261,7 @@ class Bank3:
     ):  # what def value to give to transactions? None doesn't work?
         self.accno = accno
         self.name = name
+        # private variable
         self.__balance = balance
         if numtransactions is None:
             self.numtransactions = 0
@@ -276,16 +277,14 @@ class Bank3:
     # class method | cls -> Class
     @classmethod
     def update_total_accounts(cls, numaccounts):
-        Bank3.totalaccounts = (
-            numaccounts  # when referring to another class use this way
-        )
-        # cls.totalccounts = numacccounts # when referring to same class use this way
+        # Bank3.totalaccounts = numaccounts # when referring to another class use this
+        cls.totalccounts = numaccounts  # when referring to same class use this way
 
     # class method | cls -> Class
     @classmethod
     def update_interest_rate(cls, rate):
-        Bank3.interest_rate = rate  # when referring to another class use this way
-        # cls.interest_rate = rate # when referring to same class use this way
+        # Bank3.interest_rate = rate  # when referring to another class use this way
+        cls.interest_rate = rate  # when referring to same class use this way
 
     # Task 2
     # instance method | self -> instance/object
@@ -343,7 +342,7 @@ class Bank3:
         return f"In total we have {Bank3.totalaccounts} accounts"
 
 
-# create 3 accounts
+# create 4 accounts
 gemma = Bank3(123, "Gemma Porrill", 15_000)
 dhara = Bank3(124, "Dhara Kara", 50_001)
 caleb = Bank3(125, "Caleb Potts", 100_000)
@@ -365,27 +364,198 @@ print(Bank3.get_total_no_accounts())
 
 # Task
 class Circle:
-    pi = 3.14159
+    pi = 3.14159  # class variable
 
     # constructor function
     def __init__(self, radius):
         self.radius = radius
 
-    def from_diameter(self, diameter):
-        self.radius = diameter / 2
+    @classmethod  # cls -> class
+    # "Circle." -> therefore has to be a class method
+    def from_diameter(cls, diameter):
+        radius = diameter / 2  # get radius
+        return cls(radius)  # make and return new circle with it
 
+    # instance method | self -> instance/object
     def calculate_area(self):
         return f"The area of the circle is: {Circle.pi * (self.radius**2)}"
 
+    @staticmethod  # doesn't need anything from instances or cls
+    def perimeter(radius):
+        return round(2 * Circle.pi * radius, 2)
+
 
 # Task 1
+# static method = plain function inside class
+# print perimeter of circle given radius
+print(
+    f"The perimeter of the circle is: {Circle.perimeter(10)}"
+)  # 10 -> radius | 2 * pi * r
+print(f"The perimeter of the circle is: {Circle.perimeter(5)}")
+
+# Task 2
 # Create circle with radius
 circle1 = Circle(2)
 print(circle1.calculate_area())
 # Create circle with diameter
-# circle_from_dia = Circle.from_diameter(10)
-# print(circle_from_dia.calculate_area())
+circle_from_dia = Circle.from_diameter(20)  # 20 = diameter of circle
+# have to return new instance above to call this method on circle_from_dia
+print(circle_from_dia.calculate_area())
+
+
+# Inheritance: Animal(Base)
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    # methods/attributes
+    def speak(self):
+        return "Some sound"
+
+
+# inherits from Animal class
+class Dog(Animal):
+    def __init__(self, name, speed):
+        super().__init__(name)
+        self.speed = speed
+
+    def run(self):
+        return "🐶 wags tail!!"
+
+    # polymorphism | overriding methods
+    def speak(self):  # overrides "speak" function
+        return "Woof !! 🐕"
+
+    def speed_bonus(self):
+        return f"Running at {self.speed * 2}km/h"
+
+
+toby = Animal("toby")
+maxy = Dog("maxy", 20)
+
+print(toby.speak())
+print(maxy.speak())
+print(maxy.name)
+print(maxy.run())
+# print(toby.run()) # error, no attribute/method called run
+print(maxy.speed_bonus())
+
+
+class Bank4:
+    # Class variable | All your instances share this variable
+    interest_rate = 0.02
+    totalaccounts = 0
+
+    def __init__(
+        self, accno, name, balance, numtransactions=None, transactions=None
+    ):  # what def value to give to transactions? None doesn't work?
+        self.accno = accno
+        self.name = name
+        # private variable
+        self.__balance = balance
+        if numtransactions is None:
+            self.numtransactions = 0
+        else:
+            self.numtransactions = numtransactions
+        if transactions is None:
+            self.transactions = []
+        else:
+            self.transactions = transactions
+        Bank4.totalaccounts += 1
+        print(self.name, Bank4.totalaccounts)
+
+    # class method | cls -> Class
+    @classmethod
+    def update_total_accounts(cls, numaccounts):
+        # Bank4.totalaccounts = numaccounts # when referring to another class use this
+        cls.totalccounts = numaccounts  # when referring to same class use this way
+
+    # class method | cls -> Class
+    @classmethod
+    def update_interest_rate(cls, rate):
+        # Bank4.interest_rate = rate  # when referring to another class use this way
+        cls.interest_rate = rate  # when referring to same class use this way
+
+    # Task 2
+    # instance method | self -> instance/object
+    def display_balance(self):
+        return f"Your balance is: R{self.__balance:,}"
+
+    # Task 3
+    def withdraw(self, withdrawal):
+        if withdrawal > self.__balance:
+            return f"Insufficient funds (R{self.__balance:,}) to make this withdrawal (R{withdrawal:,})"
+        else:
+            self.__balance -= withdrawal
+            # Get today's date
+            now = datetime.now()
+            format = "%d %b"
+            nicedate = now.strftime(format)
+            self.numtransactions += 1
+            self.statement(self.numtransactions, nicedate, "withdraw", withdrawal)
+            return f"Success. {self.display_balance()}"
+
+    # Task 4
+    def deposit(self, depositamount):
+        if depositamount < 0:
+            return f"Invalid deposit amount of R{depositamount:,}"
+        else:
+            self.__balance += depositamount
+            # Get today's date
+            now = datetime.now()
+            format = "%d %b"
+            nicedate = now.strftime(format)
+            self.numtransactions += 1
+            self.statement(self.numtransactions, nicedate, "deposit", depositamount)
+            return f"Success. {self.display_balance()}"
+
+    # add deposits and withdrawals to the statement as they happen
+    # Statement function assignment
+    def statement(self, idnum, date, transtype, amount):
+        self.transactions.append(
+            {"id": idnum, "Date": date, "Type": transtype, "Amount": amount}
+        )
+        # f"Hi {self.name}, here is your list of transactions:\n" for nice function later
+        return self.transactions
+
+    def apply_interest(self):
+        # print(Bank4.interest_rate)
+        self.__balance += self.__balance * Bank2.interest_rate
+        # return self.balance
+
+    # @classmethod
+    # static method -> no cls, self | normal function
+    # when not changing anything in the classes.
+    # You can have it defined outside but people want to keep things in one place/organised
+    @staticmethod
+    def get_total_no_accounts():
+        return f"In total we have {Bank4.totalaccounts} accounts"
+
+
+# create 3 accounts
+gemma = Bank4(123, "Gemma Porrill", 15_000)
+dhara = Bank4(124, "Dhara Kara", 50_001)
+caleb = Bank4(125, "Caleb Potts", 100_000)
+kenny = Bank4(126, "Ken Kenny", 100)
+
+
+class SavingsAccount:
+    pass
+
+
+class CheckingAccount:
+    pass
+
+
+# SavingsAccount -  interest_rate = 0.05
+
+# Task 1
+gemma = SavingsAccount(123, "Gemma Porrill", 1_000)
+gemma.apply_interest()
+gemma.display_balance()  # 1_050
 
 # Task 2
-# static method = plain function inside class
-# Circle.perimeter(10)  # 10 -> radius
+# CheckingAccount - withdraw  R1
+alex = CheckingAccount(126, "Alex Lazarus", 100)
+alex(50)
+#  49
