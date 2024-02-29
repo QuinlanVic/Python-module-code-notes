@@ -23,7 +23,7 @@
 # price_list1 = [1000, 1500, 400]
 # price_list2 = [2000, 500]
 
-# price_list3 = price_list1 + price_list2 
+# price_list3 = price_list1 + price_list2
 # print(price_list3)
 # print(price_list1 + price_list2) # does not mutate list
 # print(price_list1, price_list2)
@@ -34,9 +34,9 @@
 # print(price_list1, price_list1_copy)
 
 # price_list1 = stores the memory address of the first item in the list (e.g. 456)
-# 456 + 0 = first list item
-# 456 + 1 = second list item
-# 456 + 2 = third list item
+# 456 + 0 = first list item mem addr.
+# 456 + 1 = second list item mem addr.
+# 456 + 2 = third list item mem addr.
 
 # Slice -> copy
 price_list = [1000, 1500, 400]
@@ -49,10 +49,9 @@ print(price_list, price_list2)
 print(id(price_list), id(price_list2))
 
 subjects = ["maths", "science", "eng"]
-print(", ".join(subjects)) # returns a string
+print(", ".join(subjects))  # returns a string
 
-subjects.sort() # mutates list (sorts in place)
+subjects.sort()  # mutates list (sorts in place)
 print(subjects)
 subjects.sort(reverse=True)
 print(subjects)
-

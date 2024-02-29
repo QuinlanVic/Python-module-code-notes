@@ -36,7 +36,7 @@ player_stats = [10, 30, 60]
 
 # List comprehension!!!!!!!!!!!!!!!!!!!
 # creates a copy (does not mutate original list)
-powered_up_stats = [stat for stat in player_stats]  
+powered_up_stats = [stat for stat in player_stats]
 print(powered_up_stats)
 
 powered_up_stats = [stat * 2 for stat in player_stats]  # creates a copy
@@ -51,22 +51,17 @@ avengers = [
     "Thor",
 ]
 
-leneachword = [len(super) for super in avengers]
-print(leneachword)
-
 # give me superheros with more than 10 chars
 # ["Black widow", "Captain america"]
 leneachword = [len(super) for super in avengers]
 print(leneachword)
 
-avengerslong = []
-for i in avengers:
-  if len(i) > 10:
-    avengerslong.append(i)
+avengerslong = []  # 1.
+for i in avengers:  # 3.
+    if len(i) > 10:
+        avengerslong.append(i)  # 2.
 print(avengerslong)
 
 # make in one line? -> LIST COMPREHENSION
 filtered_names = [avenger for avenger in avengers if len(avenger) > 10]
-filtered_names_upper = [avenger.upper() for avenger in avengers if len(avenger) > 10]
-print(filtered_names, filtered_names_upper)
-
+print(filtered_names)
