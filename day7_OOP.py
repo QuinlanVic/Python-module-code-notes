@@ -140,7 +140,7 @@ caleb = Bank1(125, "Caleb Potts", 100_000)
 # Task 2
 print(gemma.display_balance())
 # Task 3
-# caleb.display_balance()
+caleb.display_balance()
 print(caleb.withdraw(2000))
 print(caleb.display_balance())
 print(caleb.withdraw(99000))
@@ -151,7 +151,6 @@ print(gemma.display_balance())
 # dhara.deposit(10_000) -> Success. your balance is R60,001
 print(dhara.deposit(10_000))
 print(dhara.display_balance())
-
 
 # List of Dicitonaries
 # Assignment - Transactions Tomorrow
@@ -250,15 +249,18 @@ print(dhara.display_balance())
 print(caleb.display_balance())
 
 
-# Encapsulation | Putting it all together in one container | Give access
+# Encapsulation | Putting it all together in one container (data and methods) | Give access
+# Instance, Static and Class variables and methods in one place
+# You can make private and protected variables AND methods
 class Bank3:
-    # Class variable | All your instances share this variable
+    # Class variable | All your instances share this variable/same value
     interest_rate = 0.02
     totalaccounts = 0
 
     def __init__(
         self, accno, name, balance, numtransactions=None, transactions=None
     ):  # what def value to give to transactions? None doesn't work?
+        # instance variables | unique values for each instance
         self.accno = accno
         self.name = name
         # private variable
@@ -275,10 +277,11 @@ class Bank3:
         print(self.name, Bank3.totalaccounts)
 
     # class method | cls -> Class
+    # when we want to update a class or differentiate between classes
     @classmethod
     def update_total_accounts(cls, numaccounts):
         # Bank3.totalaccounts = numaccounts # when referring to another class use this
-        cls.totalccounts = numaccounts  # when referring to same class use this way
+        cls.totalaccounts = numaccounts  # when referring to same class use this way
 
     # class method | cls -> Class
     @classmethod
@@ -404,6 +407,8 @@ print(circle_from_dia.calculate_area())
 
 
 # Inheritance: Animal(Base)
+# private variables and methods are not inherited (hidden from subclasses)
+# can override inherited variables and methods
 class Animal:
     def __init__(self, name):
         self.name = name
@@ -416,6 +421,7 @@ class Animal:
 # inherits from Animal class
 class Dog(Animal):
     def __init__(self, name, speed):
+        # super -> use base method
         super().__init__(name)
         self.speed = speed
 
@@ -522,7 +528,8 @@ class Bank4:
 
     def apply_interest(self):
         # print(Bank4.interest_rate)
-        # use self.interest_rate!
+        # use self.interest_rate -> points to instance which has access its own class's variable
+        # interest_rate depends on the class the instance belongs to
         self._balance += self._balance * self.interest_rate
         # return self.__balance
 
@@ -574,22 +581,25 @@ class SavingsAccount(Bank4):
 
 
 class CheckingAccount(Bank4):
-    transaction_fee = 1
+    transaction_fee = 1  # Unique to CheckingAccount
 
     def withdraw(self, amount):
-        # Can do self.transaction_fee to specify th classes transaction_fee
+        # Overrides to include transaction fee
+        # Can do self.transaction_fee to specify the classes transaction_fee
         return super().withdraw(amount + CheckingAccount.transaction_fee)
 
-    # override str()
-    def __str__(self):
-        """For human readble output"""
-        return (
-            f"This account belongs to {self.name} and has balance of R{self._balance:,}"
-        )
+    # override str() which is used to print by default with print()
+    # when you print an instance of CheckingAccount, gives you a nice readable output of info.
+    # def __str__(self):
+    #     """For human readble output"""
+    #     return (
+    #         f"This account belongs to {self.name} and has balance of R{self._balance:,}"
+    #     )
 
+    #
     def __repr__(self):
         """For DX: String -> Class"""
-        return f"CheckngAccount({self.accno}, '{self.name}', {self._balance})"
+        return f"CheckingAccount({self.accno}, '{self.name}', {self._balance})"
 
     # override add
     def __add__(self, other):
@@ -607,18 +617,19 @@ print(gemma.display_balance())  # 1_050
 alex = CheckingAccount(126, "Alex Lazarus", 100)
 caleb = CheckingAccount(125, "Caleb Potts", 100_000)
 print(alex.withdraw(50))  # 49 value
+# overrides str method which is called by default with print()
 print(alex)
-# print(alex.__str__())
-# print(str(alex))
+# overrides str method, normal output is: CheckingAccount(126, 'Alex Lazarus', 49)
+print(str(alex))
+
+# reconstructs the instance
 # print(alex.__repr__())
 print(repr(alex))  # preferred syntax
-print(alex + caleb)
+print(alex + caleb)  # overrides + method
+print(alex._balance)  # can access protected value
 
-# Questions
-# Can you please explain the "self" variable with regards to self.transaction_fee and self.interest_rate with that earlier example
-# What is point of using
-
-# difference between private and protected
+# Questions!!!!!!!!!!!!!!!!!!!
+# What is point of using __str__ specifically. Can't any instance method do what it is doing here
 
 
 # Assignment
@@ -627,5 +638,5 @@ print(alex + caleb)
 # 2. Creating you own decorator
 # Using function
 # Using classes
-# example and explanation for each way
+# example and explanation for each way using doc strings
 # Create error class

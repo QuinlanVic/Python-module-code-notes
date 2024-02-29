@@ -5,7 +5,7 @@
 #   return 'Hello, World!'
 # app.run(host='0.0.0.0', port=8080)
 
-#Declaration
+# Declaration
 # name = "Gemma"
 
 # print(name)
@@ -40,7 +40,7 @@ print(
     f"The current year is {currentyear} - the year you were born {birth_year}, so your current age is {age}"
 )
 
-# print(f"Your age is {currentyear} - int(birth_year)")
+print(f"Your age is {currentyear} - {int(birth_year)}")
 
 # Area of the circle
 # import math
@@ -52,5 +52,3 @@ print(
 # per = int(input("Please enter the percentage: "))
 # eq = per // 10
 # print(f"Output: [{('=' * eq) + ' ' * (10 - eq)}] {per}%")
-
-
