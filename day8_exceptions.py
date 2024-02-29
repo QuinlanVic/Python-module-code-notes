@@ -23,6 +23,7 @@ def math_divide2(num1, num2):
         print(f"Result is: {num1 / num2}")
     except ZeroDivisionError:
         print("You cannot divide by zero bro")
+    # not mandatory to have "else" and "finally" blocks
     else:
         print("Diviion was successful")
     finally:
@@ -50,6 +51,7 @@ def calculate_age():
         # Code is shielded
         print(f"Your age is {curryear - birth_year}")
 
+    # throw errors
     # value error - ValueError: invalid literal for int() with base 10: '"age"'
     # use alias to print exception string
     except ValueError as e:
@@ -58,11 +60,6 @@ def calculate_age():
     # catch all exceptions
     except Exception as err:
         print("This is a catch all error: ", err)
-    # not mandatory to have "else" and "finally" blocks
-    else:
-        print("Successful age input!")
-    finally:
-        print("Age operation done :)")
 
 
 # custom Error creation to handle logic errors
@@ -91,7 +88,7 @@ def only_positive_num():
             raise NegativeNumberError(x)
 
     # match what type of error it is
-    # assign "e" to the instance you are creating
+    # assign "e" to the instance of NegativeNumberError you are creating
     except NegativeNumberError as e:
         print(e)
 
