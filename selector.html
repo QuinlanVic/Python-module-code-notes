@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        Types of Selectors
+        1. element = p, h2, h3 (sometimes)
+        2. class = .brand, .fun (most common)
+        3. id = #main (rare)
+        */
+        /* .brand -> class Selector | Reuse like functions */
+        .brand {
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            color: orange;
+        }
+        /* Unique per page - Use only once or JS problems */
+        /* But having multiple IDs is fine */
+        #main {
+            color: purple;
+            font-size: 24px;
+        }
+        #content {
+            line-height: 1.5;
+        }
+        /* Eg, for element selector */
+        a {
+            text-decoration: none;
+            color: hotpink;
+        }
+        .container {
+            background-color: skyblue;
+        }
+
+        /* Box model of CSS */
+        /* content, padding, border, margin (widthxheight in pixels) */
+    </style>
+
+    <link rel="stylesheet" href="navigation.css">
+</head>
+<body>
+    <ul class = "navigation">
+        <li><a href="/">Home</a></li>
+        <li><a href="/selector.html">Selector</a></li>
+        <li><a href="https://www.google.com/">Google</a></li>
+    </ul>
+    <p class="brand">Gucci</p>
+    <h2 class="brand">Luxury brand</h2>
+    <div class="container">
+    <p id="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi incidunt voluptates suscipit, eveniet qui dolorem? Ratione temporibus facere cumque quas iste voluptatem numquam officia corrupti magnam? Adipisci possimus quidem ducimus?
+    </p>
+    <p id="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi incidunt voluptates suscipit, eveniet qui dolorem? Ratione temporibus facere cumque quas iste voluptatem numquam officia corrupti magnam? Adipisci possimus quidem ducimus?
+    </p>
+    <p id="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi incidunt voluptates suscipit, eveniet qui dolorem? Ratione temporibus facere cumque quas iste voluptatem numquam officia corrupti magnam? Adipisci possimus quidem ducimus?
+    </p>
+    </div>
+    <div>
+        <h3>fun</h3>
+    </div>
+    <div>
+        <h3>fun</h3>
+    </div>
+
+    <ul>
+        <li id="main">Gaming</li>
+        <li>Running</li>
+        <li>Movies</li>
+        <li class = "brand">books</li>
+        <li>series</li>
+    </ul>
+</body>
+</html>
