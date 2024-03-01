@@ -2,10 +2,10 @@ from datetime import datetime
 
 
 def math_divide(n1, n2):
-    try:
+    try:  # try this code
         result = n1 / n2
         print(f"The answer is {result}")
-    except ZeroDivisionError:
+    except ZeroDivisionError:  # catch specific type of error
         # When error happens
         print("You cannot divide by zero! 💀")
     else:
@@ -63,7 +63,7 @@ def calculate_age():
 
 
 # custom Error creation to handle logic errors
-# Inherit from Exception
+# Inherit from Exception (base/parent class)
 class NegativeNumberError(Exception):
     """Raised when the input value is negative"""
 
@@ -76,6 +76,7 @@ class NegativeNumberError(Exception):
 
     # Override print() for base class of Exception
     # "__str__" = String dunder method
+    # if you do not override then only "self.message" will print by default
     def __str__(self):
         return f"{self.value} -> {self.message}"
 
@@ -88,7 +89,7 @@ def only_positive_num():
             raise NegativeNumberError(x)
 
     # match what type of error it is
-    # assign "e" to the instance of NegativeNumberError you are creating
+    # assign "e" to the instance of NegativeNumberError you are creating (alias)
     except NegativeNumberError as e:
         print(e)
 

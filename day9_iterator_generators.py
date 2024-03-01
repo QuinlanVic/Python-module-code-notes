@@ -1,4 +1,4 @@
-# Iterables ? minimum requirement to be an iterable -> __iter__
+# Iterables ? minimum requirement to be an iterable -> __iter__ (does not have __next__)
 # | Loop it many times | Which can be looped: List
 
 # Iterator? minimum requirement to be an iterator -> __next__
@@ -16,19 +16,20 @@ def main():
     # for n in nums:
     #     print(n)
 
-    # Now it's an iterator
-    # nums_iter = nums.__iter__() # converts to Iterator | Iterable -> Iterator
+    # Now it's an iterator (LAZY EXECUTION)
+    # nums_iter = nums.__iter__() # converts to Iterator! | Iterable -> Iterator!
     nums_iter = iter(nums)  # preferred syntax
     print(nums_iter)  # <list_iterator object at 0x03051400>
     print(
         dir(nums_iter)
     )  # Both functions are available in Iterator -> __next__ & __iter__
-    # Conclusion: All Iterators are Iterables | But not the other way around
+    # Conclusion: All Iterators are Iterables | But not the other way around!
 
     # can get values of iterator
     print(next(nums_iter))
     print(next(nums_iter))
     print(next(nums_iter))
+    # exhasusted the iterator
     # print(next(nums_iter)) # error since you can only loop through it once (StopIteration)
 
     # Looping with Iterators!!!!!!!!!!!!!!!!!!!
@@ -58,12 +59,13 @@ def main():
     # count values, start and end and skip with one
 
 
+# to create your own iterator you need "__iter__" and "__next__" dunder methods
 class MyRange:
     def __init__(self, start, end):
         self.current = start
         self.end = end
 
-    # already an iterator so it returns self
+    # already an iterator so it returns self! ("__iter__" converts to an iterator)
     def __iter__(self):
         return self
 
@@ -75,11 +77,13 @@ class MyRange:
 
 
 # Generator - clean | infinite_integers() -> iterator
+# LAZY EXECUTION
+# can do infinite values, pauses execution with each yield until next "next()" is called
 def infinite_integers():
     n = 0
     while True:  # 3. then back to yield because of while condition
         # Generator syntax - lazy
-        yield n  # 1. yield -> execution pauses here (it knows when to exit)
+        yield n  # 1. yield -> execution pauses here (it knows when to exit with function)
         n += 1  # 2. only goes here when next "next" is called
 
 

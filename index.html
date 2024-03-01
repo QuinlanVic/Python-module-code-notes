@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <!-- attributes: lang, src, charset, name, content -->
-    <!-- meta = Self closing tags -->
+    <!-- meta/img = Self closing tags, do not have closing tag -->
     <!-- "UTF-8" -> file encoding (unicode) -->
-    <!-- supports emojis, all language characters e.g., hindi, mandarin, japanese -->
+    <!-- renders/supports emojis, all language characters e.g., hindi, mandarin, japanese -->
     <meta charset="UTF-8">
     <!-- Adapt phone = viewport and stuff -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool</title>
+    <!-- Have to place these in <head></head> -->
+    <!-- Tab name changes with "title" -->
+    <title>Cool</title> 
+    <!-- Internal CSS -->
     <style>
         ul {
          color: crimson;
@@ -18,37 +21,60 @@
          /* 0 - 255 */
          /* A = Alpha */
          color: rgb(255, 69, 122);
-         /* HSL - Hue Saturation Lightness - Human friendly */
+         /* HSL - Hue Saturation Lightness - Most Human friendly */
          color: hsl(342.9deg 100% 75.53% / 100%);
          /* new syntax = new colours */
          /* monitors = how well it can display colours, refresh rate, hertz, resolution, size, price */
         }
         p {
-            font-style: italic;
-            font-weight: bold; /* or 600 = diff. levels of bold */
+            /* font-style: italic; */
+            /* font-weight: bold; or 600 = diff. levels of bold */
             /* 1 px = 1 dot on the screen */
-            font-size: 32px;
+            /* default paragraph font size = 16px */
+            /* font-size: 32px;
             text-align: center;
+            text-transform: uppercase; */
+            /* Inverse rule: with smaller font, you want greater line height
+               And if font is larger, line height can be smaller
+            */
+            /* UX - Readability */
+            line-height: 1.5;
+        }
+        h2 {
+            text-decoration: line-through;
+            /* text-decoration: overline; */
+        }
+        h3 {
             text-transform: uppercase;
+            text-align: center;
+            /* fancy branding */
+            letter-spacing: 10px;
         }
     </style>
+    <!-- Separation of concern -->
+    <!-- External CSS: Most preferred* -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <!-- tags / elements -->
 <body>
     <img src="" alt="">
+    <!-- Bold by default -->
+    <!-- Do not make changes from convention such as headings as headings or p as p because of visually impaired people doing text-to-speech -->
+    <!-- For example, it will read all headings first so if you make a paragraph look like a header these users will not know due to text-to-speech conversion -->
     <h1>Hello, Hacked 🚀</h1>
     <h2>Hello, Hacked 🚀</h2>
     <h3>Hello, Hacked 🚀</h3>
     <h4>Hello, Hacked 🚀</h4>
     <h5>Hello, Hacked 🚀</h5>
     <h6>Hello, Hacked 🚀</h6>
-    <p>Hello, my name is quin</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae architecto corporis et consequuntur iure odit reprehenderit expedita modi? Reprehenderit doloremque maiores incidunt esse impedit, laudantium iste nesciunt, molestiae obcaecati modi quisquam alias officia assumenda sed facere, cum non quae ullam ab ad? Assumenda consectetur consequuntur pariatur eos deserunt dolorum nisi tempore hic enim. Dicta esse illum exercitationem ad incidunt ex cupiditate quas velit saepe, nemo culpa? Sunt at, numquam nostrum perferendis in reiciendis expedita impedit blanditiis voluptatum, laudantium dignissimos laborum? Quasi, veritatis id. Tempora exercitationem soluta sit aliquid aspernatur, dicta saepe maxime omnis impedit, dolores earum laudantium quasi nemo in!</p>
     <!-- 2 List types = ul & li 
         ul = unordered list
         ol = ordered list
     -->
     <!-- Emmet Documentation = ul>li*5 + tab -->
     <h2>Hobbies</h2>
+    <h3>Gucci</h3>
     <!-- Unordered list -->
     <ul>
         <li>Gaming</li>
@@ -58,7 +84,8 @@
         <li>Sleeping</li>
     </ul>
     <!-- Ordered list -->
-    <ol>
+    <!-- Inline CSS = least preferred -->
+    <ol style= "color: orange; font-size: 24px">
         <!-- li = list item -->
         <li>Gaming</li>
         <li>Running</li>
@@ -78,3 +105,9 @@ This is outside of body
 <!-- ! + <tab> -> boiler plate code -->
 
 <!-- document.designMode = "on" -->
+
+<!-- Assignment = BEAST poster -->
+
+<!-- Figma hints -->
+<!-- Can make and save different variants of the same thing and put them on different pages -->
+<!-- Auto-layering = keeping everything in space when expanding or shrinking components -->
