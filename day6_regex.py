@@ -24,6 +24,8 @@ output = "Present and end with be" if is_be else "Not present"
 print(is_be, type(is_be))
 print(output)
 
+print(re.search(r"^Hello", "Hello World!").group(0))  # Hello
+
 # findall matches all cases and returns them in a list
 # [] = character set (or), {} = exactly 2 (gives repetition range)
 quote1 = "funny funy funnnny fuzzy"
@@ -51,6 +53,7 @@ print(censor_tweet)
 
 list_websites = "facebook.com, google.com, twitter.in, amazon.com"
 # result = re.sub(r'(\w+)\.com$', 'blacklist.com', list_websites)
+# any alphaneumeric char
 result = re.sub(r"(\w+)(\.com)", r"\1.subdomain\2", list_websites)
 print(result)
 
