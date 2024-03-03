@@ -15,10 +15,10 @@ person = {"name": "Siya Kolisi", "age": 32, "country": "South Africa", "sport": 
 # Methods
 # Iterable -> List, Tuple, dict_keys
 # access keys
-print(person.keys(), type(person.keys()))
+print(person.keys(), type(person.keys()))  # list
 # access values
-print(person.values())
-print(person.items())  # key value pairs (tuples)
+print(person.values())  # list
+print(person.items())  # key value pairs list of (tuples)
 
 # Loop
 
@@ -26,9 +26,9 @@ print(person.items())  # key value pairs (tuples)
 #   print(detail) # all items
 #   print(detail[0]) # only keys
 #   print(detail[1]) # only values
-
-# for key, value in person.items():
-#   print(key, value)
+# cool unpacking
+for key, value in person.items():
+    print(key, value)
 
 person = {"name": "Siya Kolisi", "age": 32, "country": "South Africa", "sport": "Rugby"}
 
@@ -57,17 +57,19 @@ print(person.get("height"))  # 186
 
 # get('key', default_value)
 print(person.get("height", 175))  # 186 (has height so default value not printed)
-# print(person['address']['city']) # not safe, need to give default value if no address
+# print(person['address']['city']) # NOT SAFE, need to give default value if no address
 # print(person['address', {}].get('city')) # safe now, if no address -> None
 
 
-print(person.get("stats"))
-# None.get('points')
-# print(person.get('stats').get('points'))
+print(person.get("stats"))  # None
+# None.get('points') # THIS WILL RESULT IN ERROR!
+# print(person.get('stats').get('points')) # UNSAFE
 # AttributeError: 'NoneType' object has no attribute 'get'!!!!
+
 # Fix -> give empty dicitonary value which has get available
 print(person.get("stats", {}).get("points"))  # None
-# print(person.get('stats', {}).get('points', 'No points data')) # No points data
+# Give nested default value
+print(person.get("stats", {}).get("points", "No points data"))  # No points data
 
 # Dictionary Comprehension!!!!
 # Different to list comprehension with "{}" instead of "[]" and
