@@ -1,10 +1,11 @@
 from pprint import pprint
+
 movies = [
-  {"title": "Inception", "ratings": [5, 4, 5, 4, 5]},
-  {"title": "Interstellar", "ratings": [5, 5, 4, 5, 4]},
-  {"title": "Dunkirk", "ratings": [4, 4, 4, 3, 4]},
-  {"title": "The Dark Knight", "ratings": [5, 5, 5, 5, 5]},
-  {"title": "Memento", "ratings": [4, 5, 4, 5, 4]},
+    {"title": "Inception", "ratings": [5, 4, 5, 4, 5]},
+    {"title": "Interstellar", "ratings": [5, 5, 4, 5, 4]},
+    {"title": "Dunkirk", "ratings": [4, 4, 4, 3, 4]},
+    {"title": "The Dark Knight", "ratings": [5, 5, 5, 5, 5]},
+    {"title": "Memento", "ratings": [4, 5, 4, 5, 4]},
 ]
 
 # "map" and "filter" are sequence functions (can only be applied to sequences)
@@ -23,17 +24,27 @@ titles = map(lambda x: x["title"], movies)
 print(list(titles))
 
 print("Task 1.1")
-averageratings = map(lambda x: sum(x["ratings"])/len(x["ratings"]), movies)
-print(list(averageratings))
+averageratings = map(lambda x: sum(x["ratings"]) / len(x["ratings"]), movies)
+print(list(averageratings))  # have to convert map object into a list
 
 print("Task 1.2")
-averageratingsaddition = list(map(lambda x: {**x, "average_rating": sum(x["ratings"])/len(x["ratings"])}, movies))
+averageratingsaddition = list(
+    map(
+        lambda x: {**x, "average_rating": sum(x["ratings"]) / len(x["ratings"])}, movies
+    )
+)
 print(averageratingsaddition)
+
+
 # or create def
 def find_avg(movie):
-  return sum(movie["ratings"])/len(movie["ratings"])
+    return sum(movie["ratings"]) / len(movie["ratings"])
+
+
 print("Task 1.2 again")
-averageratingsaddition = list(map(lambda x: {**x, "average_rating": find_avg(x)}, movies))
+averageratingsaddition = list(
+    map(lambda x: {**x, "average_rating": find_avg(x)}, movies)
+)
 print(averageratingsaddition)
 # print(type(averageratingsaddition))
 
@@ -45,8 +56,10 @@ print(f"The top rated movie is '{toprated['title']}'")
 print("Task 3")
 # Movies with ratings more than or equal to 4.6
 # output = ['Inception', 'Interstellar', 'The Dark Knight']
-highlyratedmovies = list(filter(lambda movie: movie["average_rating"] >= 4.6, averageratingsaddition))
-# filter does not change the data type
+highlyratedmovies = list(
+    filter(lambda movie: movie["average_rating"] >= 4.6, averageratingsaddition)
+)
+# filter does not change the data type!
 print(list(map(lambda movie: movie["title"], highlyratedmovies)))
 
 # Task 4
@@ -59,11 +72,13 @@ print(list(map(lambda movie: movie["title"], highlyratedmovies)))
 # print(list(map(lambda movie: movie["title"], ratingordered)))
 # Task 5 (top 3 and string output)
 # "sorted" returns a new list!
-ratingordered2 = sorted(averageratingsaddition, key=lambda movie: movie["average_rating"], reverse=True)
+ratingordered2 = sorted(
+    averageratingsaddition, key=lambda movie: movie["average_rating"], reverse=True
+)
 ratingordered_titles = map(lambda movie: movie["title"], ratingordered2)
-print(list(ratingordered_titles))
-ratingordered_titles_top3 = list(ratingordered_titles)[0:3]
-print(ratingordered_titles_top3)
+# have to do it again, weird. Not saved in memory
+top3pre = map(lambda movie: movie["title"], ratingordered2)
+print(list(ratingordered_titles), list(top3pre)[0:3])
 # print(", ".join(ratingordered_titles_top3))
 pprint(movies)
 pprint(list(ratingordered2))

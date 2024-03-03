@@ -22,7 +22,7 @@ print(f"Dhara's salary is R{salary:_}")
 # Float formatting
 print(f"The PI value is: {pi:.2f}")  # f denotes it's a floating point number
 print(f"The PI value is: {pi:.3f}")  # 3 decimals
-print(f"The PI value is: {round(pi)}") # just 3
+print(f"The PI value is: {round(pi)}")  # just 3
 
 # text formatting
 name = "Lilitha"
@@ -54,3 +54,4 @@ print(about_me)
 about_me2 = f"""
 Hi, Caleb's percentage is {caleb}. 
 """
+print(about_me2)

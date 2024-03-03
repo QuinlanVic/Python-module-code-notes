@@ -108,3 +108,6 @@ print(hashtags)
 # Ship containers like shipyards
 
 # ctrl + ~ -> Open/Close Terminal
+# prints ('Hello', 'Hell', 'o')
+nested = re.search(r"((\w+)(\w+))", "Hello World")
+print(nested.groups())
