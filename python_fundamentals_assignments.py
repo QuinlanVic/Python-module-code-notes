@@ -229,6 +229,7 @@ print(draco.cast_spell(harry, "dealthly hallows", 40))
 print(harry.cast_spell(draco, "Avada Kedavra", 45))
 print(WizardDuel.determine_winner(harry, draco))
 
+
 # Q11. Custom Error Handling in Potion Making
 # Objective: Create a custom exception to handle errors in potion making, such as using the wrong ingredient.
 # Setup Code
@@ -237,20 +238,71 @@ print(WizardDuel.determine_winner(harry, draco))
 print("Question 11")
 
 
+class PotionError(Exception):
+    """Raised when there is an error during potion making"""
+
+    # constructor for creating an error
+    def __init__(self, ingredient, potion):
+        self.ingredient = ingredient
+        self.potion = potion
+        self.message = "Caught PotionError: "
+        # here we create an instance of the exception class using base method, giving it extra variables
+        super().__init__(self.message)
+
+    # Override print() for base class of Exception
+    # "__str__" = String dunder method
+    # if you do not override then only "self.message" will print by default
+    def __str__(self):
+        return f"{self.message} '{self.ingredient}' is not a valid ingredient for the {self.potion}."
+
+
+potions = [
+    {"Love Potion": ["unicorn tear", "eagle feather"]},
+    {"Hate Potion": ["Eye of Newt", "Eye of Kashar"]},
+    {"Death Potion": ["dragon's claw", "earth essence"]},
+    {"Life Potion": ["pure silver", "oracle eye"]},
+]
+
+
+def potion_making(ingredients, potion_chosen):
+    valid_ingre_for_potion = []
+    for potion in potions:
+        for potion_name, ingre in potion.items():
+            if potion_name == potion_chosen:
+                valid_ingre_for_potion = ingre
+                break
+    try:
+        for ingredient in ingredients:
+            if ingredient not in valid_ingre_for_potion:
+                raise PotionError(ingredient, potion_chosen)
+        print(f"{potion_chosen} successfully created using {ingredients}")
+    except PotionError as e:
+        print(e)
+
+
+potion_making(["dragon's claw", "earth essence"], "Death Potion")
+potion_making(["pure silver", "oracle eye"], "Life Potion")
+potion_making(["unicorn tear", "Eye of Newt"], "Love Potion")
+
+
 # Q12. Hogwarts Library Database Query
 # Objective: Simulate a database query to find books by a specific author using list comprehensions.
 # Setup Code
+print("Question 12")
 library = [
     {"title": "Unfogging the Future", "author": "Cassandra Vablatsky"},
     {"title": "Magical Hieroglyphs and Logograms", "author": "Bathilda Bagshot"},
 ]
 #  Expected Task: Use a list comprehension to select books written by Bathilda Bagshot.
 # Expected Output: [{'title': 'Magical Hieroglyphs and Logograms', 'author': 'Bathilda Bagshot'}]
+books_by_author = [book for book in library if book["author"] == "Bathilda Bagshot"]
+print(books_by_author)
 
 
 # Q13. Hogwarts House Points Calculator
 # Objective: Calculate the total points for each house using nested loops and a list of dictionaries.
 # Setup Code
+print("Question 13")
 house_points = [
     {"house": "Gryffindor", "points": 35},
     {"house": "Slytherin", "points": 50},
@@ -259,6 +311,11 @@ house_points = [
 ]
 # Expected Task: Aggregate points for each house and print the total.
 # Expected Output: Gryffindor: 95, Slytherin: 90
+house_total_points = []
+for house in house_points:
+    for key, value in house.items():
+        house_total_points.append(value)
+print(house_total_points)
 
 
 # Q14. Class Inheritance for Magical Creatures
@@ -266,6 +323,42 @@ house_points = [
 # Setup Code
 # Expected Task: Create a base class `MagicalCreature` and subclasses `Dragon`, `Unicorn`. Each subclass should have a unique `sound` method.
 # Expected Output: Calling sound() on a Dragon instance prints 'Roar', on a Unicorn instance prints 'Neigh'.
+print("Question 14")
+
+
+class MagicalCreature:
+    def __init__(self, name):
+        self.name = name
+
+    def sound(self):
+        return "Noise"
+
+
+class Dragon(MagicalCreature):
+    # can get rid of, don't need to override
+    # def __init__(self, name):
+    #     super().__init__(name)
+
+    def sound(self):
+        return "Roar"
+
+
+class Unicorn(MagicalCreature):
+    # can get rid of, don't need to override
+    # def __init__(self, name):
+    #     super().__init__(name)
+
+    def sound(self):
+        return "Neigh"
+
+
+giant = MagicalCreature("Giant")
+darkscales = Dragon("DarkScales")
+whitelily = Unicorn("WhiteLily")
+
+print(giant.sound())
+print(darkscales.sound())
+print(whitelily.sound())
 
 
 # Q15. Custom Sorting with Lambda for Magical Artifacts
@@ -283,9 +376,11 @@ artifacts = [
 # Q16. Wizard Profile Generator with f-strings
 # Objective: Dynamically generate wizard profiles using f-strings and dictionary unpacking.
 # Setup Code
+print("Question 16")
 wizard = {"name": "Albus Dumbledore", "title": "Headmaster", "house": "Gryffindor"}
 # Expected Task: Use an f-string to create a profile string that includes the wizard's name, title, and house.
 # Expected Output: 'Albus Dumbledore, the Headmaster of Gryffindor.'
+print(f"{wizard.get('name')}, the {wizard.get('title')} of {wizard.get('house')}.")
 
 
 # Q17. Magical Creature Adoption Matching
@@ -295,19 +390,39 @@ adopters = [("Harry", "Phoenix"), ("Hermione", "House Elf")]
 creatures = [("Fawkes", "Phoenix"), ("Dobby", "House Elf"), ("Buckbeak", "Hippogriff")]
 # Expected Task: Use `filter` and `map` to create a list of matches between adopters and creatures.
 # Expected Output: [('Harry', 'Fawkes'), ('Hermione', 'Dobby')]
+# creaturesmatch = list(filter(lambda (name, creature): creature if , creatures))
+# adopters_creatures = list(map(lambda (adopter, preference): (adopter, name) , adopters))
+# print(adopters_creatures)
 
 
 # Q18. Advanced Potion Making with Nested Loops
 # Objective: Simulate potion making where each combination of ingredients produces a unique result using nested loops.
 # Setup Code
+print("Question 18")
 ingredients = ["Moonstone", "Silver Dust", "Dragon Blood"]
 # Expected Task: For each pair of ingredients, print out the unique potion they produce.
 # Expected Output: Combining Moonstone and Silver Dust produces a Visibility Potion., etc., for all unique pairs.
+potions_made = ["Visibility Potion", "Rage Potion", "Bliss Potion"]
+
+
+def potion_making(ingredients_list):
+    i = 0
+    k = 0
+    for i in range(len(ingredients_list)):
+        for j in range(i + 1, len(ingredients_list)):
+            print(
+                f"Combining {ingredients_list[i]} and {ingredients_list[j]} produces a {potions_made[k]}."
+            )
+            k += 1
+
+
+potion_making(ingredients)
 
 
 # Q19. Nested Data Manipulation
 # Objective: Navigate and manipulate a nested data structure.
 # Setup Code
+print("Question 19")
 data = [
     {"id": 1, "name": "Item 1", "tags": ["tag1", "tag2"]},
     {"id": 2, "name": "Item 2", "tags": ["tag2", "tag3"]},
@@ -315,11 +430,16 @@ data = [
 ]
 # Expected Task: For each item, add a new tag "tag4" only if "tag1" is present in the tags list.
 # Expected Output: The original list with the modified tags list for applicable items.
+for element in data:
+    if "tag1" in element["tags"]:
+        element["tags"].append("tag4")
+print(data)
 
 
 # Q20. Implementing a Custom Sort Function
 # Objective: Implement a custom sort function for a list of dictionaries based on multiple criteria.
 # Setup Code
+print("Question 20")
 tasks = [
     {"id": 1, "priority": "High", "completed": False},
     {"id": 2, "priority": "Low", "completed": True},
@@ -327,10 +447,25 @@ tasks = [
 ]
 # Expected Task: Sort the tasks by "completed" status (False first) and then by priority ("High", "Medium", "Low").
 # Expected Output: The sorted list of tasks.
-# tasksranked = sorted(
-#     tasks,
-#     key=(lambda task: task["completed"]),
-#     key=(lambda task: task["priority"]),
-#     reverse=True,
-# )
-# print(tasksranked)
+tasksrankedcompleted = sorted(
+    tasks,
+    key=(lambda task: task["completed"]),
+)
+# print(tasksrankedcompleted)
+
+
+def priority_as_int(priority):
+    # print(priority)
+    if priority == "High":
+        return 3
+    if priority == "Medium":
+        return 2
+    return 1
+
+
+tasksrankedpriority = sorted(
+    tasksrankedcompleted,
+    key=(lambda task: priority_as_int(task["priority"])),
+    reverse=True,
+)
+print(tasksrankedpriority)
