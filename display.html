@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Body has a default margin hence why every page has a little space around everything*/
+        body {
+            margin: 0;
+        }
+        .container {
+            background: orange;
+            /* width: 500px; */
+            /* adjusts automatically */
+            width: 50%;
+        }
+        p {
+            background: purple;
+        }
+        a {
+            background: pink;
+        }
+        .rose {
+            height: 40%;
+            width: 40%;
+        }
+        .web {
+            /* convert inline to block */
+            /* display: block; */
+            /* Hybrid of block and inline */
+            display: inline-block;
+            /* respects height and width & Side By Side */
+            /* element is not even displayed */
+            display: none;
+            height: 200px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Only takes up the content height and width as it's an inline element
+    Even if you give it height and/or width 
+    inline elements do not respect height and/or width
+    -->
+    <a class="web" href="">Google.com</a> <a href=""> Link 10</a>
+    <!-- These are due to the display of the elements -->
+    <!-- One below the other (display: block) - p, h1-h6, div -->
+    <!-- Block = full width of the container (which is body in this case) -->
+    <p>Para 1</p> <p> Para 2</p> 
+    <!-- Side by side (display: inline)-->
+    <!-- Inline =  Only content width-->
+    <a href="">Link 1</a>
+    <!-- Now the  -->
+    <a>Link 2</a> 
+    <!-- Can convert inline to block using div (put one into a block element) -->
+    <div class = "container">
+        <a href="">Link 3</a>
+    </div>
+    <a>Link 4</a>
+   
+    <div class="container">
+        <!-- Block = full width of the container (which is div in this case for p) -->
+        <p>Para 1</p>
+        <p>Para 2</p>
+        <h1>Cool</h1>
+    </div>
+    <img class="rose" src="https://images.pexels.com/photos/1003914/pexels-photo-1003914.jpeg?cs=srgb&dl=pexels-samer-daboul-1003914.jpg&fm=jpg" alt="">
+    <h1>Cool 2</h1>
+    
+</body>
+</html>

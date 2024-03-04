@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box1,
+      .box2,
+      .box3 {
+        /* keep side by side but breaks with resizing :() */
+        /* display: inline-block; */
+        /* height: 300px; */
+        width: 200px;
+      }
+ 
+      .box1 {
+        background: plum;
+      }
+ 
+      .box2 {
+        background: purple;
+      }
+ 
+      .box3 {
+        background: pink;
+      }
+ 
+      .container {
+         /* keep everything side by side, do what you gotta do */
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- apply flex on parent element! -->
+    <section class="container">
+      <div class="box1">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
+          voluptatem.
+        </p>
+      </div>
+      <div class="box2">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
+          voluptatem.
+        </p>
+      </div>
+      <div class="box3">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
+          voluptatem.
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
+ 
+<!--
+    Arrangement of elements
+ -->

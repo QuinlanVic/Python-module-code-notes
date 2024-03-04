@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- paste in link for font awesome to use their icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        display: grid;
+        place-content: center;
+        min-height: 100vh;
+    }
+    /* .thumbsup {
+        height: 400px;
+        width: 400px;
+    } */
+    .tu {
+        font-size: 64px;
+        transition: 1s all ease-in-out;
+        cursor: pointer;
+        font-family: "Roboto";
+        /* border: 3px solid black; */
+        padding: 8px;
+        /* border-radius: 50%; */
+    }
+    .tu:hover {
+        transform: translateY(-40px);
+        font-size: 100px;
+        color: red;
+    }
+    .box {
+        background: plum;
+        height: 400px;
+        width: 400px;
+        /* all the properties of box transition over the ourse of 2 seconds */
+        transition: 2s all;
+        /* make it a  */
+        cursor: pointer;
+    }
+    /* psuedo class "hover": hover over box and cause changes */
+    .box:hover {
+        /* change size */
+        transform: scale(1.1) translateY(-40px);
+        background: crimson;
+    }
+    /* mouse-click */
+    .box:active {
+        background: teal;
+        transform: scale(0.9) rotate(360deg) translateY(40px);
+        /* turns into a circle */
+        border-radius: 50%;
+    }
+    /* psuedo class - fake/temporary class */
+</style>
+<body>
+    <!-- <div class="box"></div> -->
+    <!-- <div class="thumbsup"> -->
+        <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+        <p class = "tu"><i class="fa-solid fa-heart"></i></p>
+        <!-- <p class = "tu">👍</p> --> 
+    <!-- </div> -->
+</body>
+</html>

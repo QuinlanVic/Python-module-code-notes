@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        /* Not inherited - Only applied to parent class*/
+        background: plum;
+        /* background-color: aqua; */
+        border: 5px dotted palevioletred;
+        /* Overrides first one i.e., dotted */
+        border-style: dashed;
+        height: 500px;
+        margin: 10px;
+        padding: 16px;
+
+        /* Inherited */
+        color: purple;
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 24px;
+        font-style: italic;
+    }
+    p {
+        background: seagreen;
+    }
+    /* https://bennettfeely.com/clippy/ */
+    .landscape {
+        /* cool star from website code */
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .newimg {
+        clip-path: polygon(52% 8%, 14% 33%, 49% 93%, 87% 83%, 94% 37%, 90% 8%);
+        height: 75%;
+        width: 75%;
+        /* Keep this height and width and zoom in */
+        /* object-fit: cover; */
+        /* zoom out */
+        /* object-fit: contain; */
+        
+    } 
+</style>
+<body>
+    <div class="container">
+        <!-- All "p"s inherit from "div" -->
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque cum, earum placeat dolore sapiente nemo aut. Et voluptatem optio sunt reprehenderit itaque ullam amet quod, numquam quas omnis, rem rerum?
+        </p>
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque cum, earum placeat dolore sapiente nemo aut. Et voluptatem optio sunt reprehenderit itaque ullam amet quod, numquam quas omnis, rem rerum?
+        </p>
+        <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque cum, earum placeat dolore sapiente nemo aut. Et voluptatem optio sunt reprehenderit itaque ullam amet quod, numquam quas omnis, rem rerum?
+        </p>
+    </div>
+    <img class= "newimg" src="https://images7.alphacoders.com/126/1264383.jpg" alt="">
+</body>
+</html>
