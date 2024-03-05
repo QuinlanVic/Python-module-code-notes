@@ -11,24 +11,33 @@
         /* keep side by side but breaks with resizing :() */
         /* display: inline-block; */
         /* height: 300px; */
-        width: 200px;
+        /* width: 200px; */
       }
  
       .box1 {
         background: plum;
+        width: 50px;
       }
  
       .box2 {
         background: purple;
+        width: 50px;
       }
  
       .box3 {
         background: pink;
+        width: 100px;
       }
  
       .container {
          /* keep everything side by side, do what you gotta do */
-        display: flex;
+        /* display: flex; */
+        /* Only knows 1d and just works with horixontal rows */
+        /* flex-wrap: wrap; */
+        /* grid = fills space to keep sizes the same as much as possible */
+        display: grid;
+        /* flex-wrap: wrap; */
+        /* can use "gap" for rows and columns indv or both */
       }
     </style>
   </head>
@@ -41,6 +50,15 @@
       </div>
       <div class="box2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, sint praesentium? Mollitia et voluptatibus saepe animi, ducimus veritatis qui velit perferendis praesentium asperiores nemo, illum, commodi odit cum. Dolorem, soluta?
+      </div>
+      <div class="box3">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero autem, blanditiis nesciunt harum repudiandae omnis nihil voluptatem velit magni error.
+      </div>
+      <div class="box3">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero autem, blanditiis nesciunt harum repudiandae omnis nihil voluptatem velit magni error.
+      </div>
+      <div class="box3">
+      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero autem, blanditiis nesciunt harum repudiandae omnis nihil voluptatem velit magni error.
       </div>
       <div class="box3">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero autem, blanditiis nesciunt harum repudiandae omnis nihil voluptatem velit magni error.

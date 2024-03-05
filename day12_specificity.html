@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- CSS - Cascading(overriding) Style Sheet -->
+    <!-- in devtools the colours will be striked out when overridden -->
+    <style>
+        #cool {
+            color: plum;
+        }
+        .fun {
+            color: skyblue;
+        }
+        p {
+            color: crimson /*!important;*/
+        }
+        p {
+            color: orange;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <p class = "fun" id="cool" style="color: teal">Para</p>
+</body>
+</html>
+<!-- Specificity -->
+<!-- When there is a clash between stylees which would be given higher priority -->
+<!-- DO NOT USE = (!important > inline > id) > class > element (order internal -> external all about order) -->
+<!-- Overridding is fine up until class as you can override it many times without issue -->
+<!-- if you mouse over CSS selectors you can see its specificity -->

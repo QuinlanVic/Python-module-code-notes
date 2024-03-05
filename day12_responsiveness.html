@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box1 {
+        background: plum;
+      }
+ 
+      .box2 {
+        background: purple;
+      }
+ 
+      .box3 {
+        background: pink;
+      }
+
+      .container {
+         /* keep everything side by side, do what you gotta do */
+        /* display: flex; */
+        display: grid;
+        /* fr = ratios between column sizes */
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        /* grid-template-columns: 1fr 2fr 1fr; */
+        /* grid-template-columns: repeat(4, 1fr);  */
+
+        /* easy way to implement responsiveness */
+        /* minimum 200px to break down into different rows */
+        /* RAM technique - repeat auto-fit minmax */
+        /* less control */
+        /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+
+      }
+      
+      /* Breakpoint 1  */
+      /* media query */
+      @media (min-width: 440px) { 
+        /* after 440 px I want 2 column layout *//* after 440 px I want 2 column layout and third to be teal*/
+        .container {
+            /* background: crimson; */
+            grid-template-columns: 1fr 1fr;
+            /* grid-template-columns: repeat(2, 1fr) */
+        }
+        .box3 {
+            background: teal;
+        }
+      }
+      /* Breakpoint 2 */
+      /* @media (min-width: 900px) {
+        .box1 {
+            background: purple;
+            border-radius: 50%;
+        }
+      } */
+    </style>
+  </head>
+  <body>
+    <section class="container">
+        <div class="box1">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
+            voluptatem.
+          </div>
+          <div class="box2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus,
+            voluptatem. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, voluptatem. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Voluptatibus, voluptatem.
+          </div>
+          <div class="box3">
+            voluptatem. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, voluptatem. Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Voluptatibus, voluptatem.
+          </div>
+      </section>
+  </body>
+</html>
+
+ <!-- Mobile first approach -> can be used like mobile on desktop but not other way around -->
+<!-- how a webpage adjusts to changes in screen size
+break format when things are too cramped -->
