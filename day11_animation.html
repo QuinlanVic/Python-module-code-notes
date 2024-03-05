@@ -36,12 +36,14 @@
         background: plum;
         height: 400px;
         width: 400px;
-        /* all the properties of box transition over the ourse of 2 seconds */
+        /* animate */
+        /* all the properties of box transition over the course of 2 seconds */
+        /* can animate specific properties that can be animated */
         transition: 2s all;
         /* make it a  */
         cursor: pointer;
     }
-    /* psuedo class "hover": hover over box and cause changes */
+    /* psuedo class "hover": mouse over box and cause changes */
     .box:hover {
         /* change size */
         transform: scale(1.1) translateY(-40px);
@@ -54,7 +56,7 @@
         /* turns into a circle */
         border-radius: 50%;
     }
-    /* psuedo class - fake/temporary class */
+    /* psuedo class - fake/temporary class that are activated when an action takes place e.g. hover/click */
 </style>
 <body>
     <!-- <div class="box"></div> -->
