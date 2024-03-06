@@ -21,7 +21,7 @@
          /* keep everything side by side, do what you gotta do */
         /* display: flex; */
         display: grid;
-        /* fr = ratios between column sizes */
+        /* fr = fractional unit (ratios) between column sizes */
         /* grid-template-columns: 1fr 1fr 1fr; */
         /* grid-template-columns: 1fr 2fr 1fr; */
         /* grid-template-columns: repeat(4, 1fr);  */
@@ -29,24 +29,27 @@
         /* easy way to implement responsiveness */
         /* minimum 200px to break down into different rows */
         /* RAM technique - repeat auto-fit minmax */
+        /* repeats number you give to it and auto-fit bases design on screen size and determines size of breakpoint */
+        /* RAM = automatically adjusts column values based on values you give it based on breakpoint */
+        /* each column is 200px width minimum and the number of columns changes with every 200px */
         /* less control */
-        /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
       }
       
       /* Breakpoint 1  */
       /* media query */
-      @media (min-width: 440px) { 
+      /* @media (min-width: 440px) {  */
         /* after 440 px I want 2 column layout *//* after 440 px I want 2 column layout and third to be teal*/
-        .container {
+        /* .container { */
             /* background: crimson; */
-            grid-template-columns: 1fr 1fr;
+            /* grid-template-columns: 1fr 1fr; */
             /* grid-template-columns: repeat(2, 1fr) */
-        }
-        .box3 {
-            background: teal;
-        }
-      }
+        /* } */
+        /* .box3 { */
+            /* background: teal; */
+        /* } */
+      /* } */
       /* Breakpoint 2 */
       /* @media (min-width: 900px) {
         .box1 {
@@ -77,6 +80,6 @@
   </body>
 </html>
 
- <!-- Mobile first approach -> can be used like mobile on desktop but not other way around -->
+ <!-- Mobile first approach -> can be used like mobile on desktop but not other way around & google punishes link on which page depending on how repsonsive it is -->
 <!-- how a webpage adjusts to changes in screen size
 break format when things are too cramped -->
