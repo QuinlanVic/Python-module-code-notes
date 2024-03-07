@@ -8,7 +8,7 @@
 def main():
     nums = [5, 10, 20]
     # prints all methods possible
-    print(dir(nums))
+    # print(dir(nums))
 
     # Can loop list many times no problem
     # for n in nums:
@@ -20,9 +20,8 @@ def main():
     # nums_iter = nums.__iter__() # converts to Iterator! | Iterable -> Iterator!
     nums_iter = iter(nums)  # preferred syntax
     print(nums_iter)  # <list_iterator object at 0x03051400>
-    print(
-        dir(nums_iter)
-    )  # Both functions are available in Iterator -> __next__ & __iter__
+    # Both functions are available in Iterator -> __next__ & __iter__
+    # print(dir(nums_iter))
     # Conclusion: All Iterators are Iterables | But not the other way around!
 
     # can get values of iterator
@@ -30,7 +29,8 @@ def main():
     print(next(nums_iter))
     print(next(nums_iter))
     # exhasusted the iterator
-    # print(next(nums_iter)) # error since you can only loop through it once (StopIteration)
+    # error since you can only loop through it once (StopIteration)
+    # print(next(nums_iter))
 
     # Looping with Iterators!!!!!!!!!!!!!!!!!!!
     # Create an Iterator and loop it with while loop
@@ -72,7 +72,9 @@ class MyRange:
     def __next__(self):
         if self.current > self.end:
             raise StopIteration
+        # increment before returning
         self.current += 1
+        # then return og selfcurrent (diff value not one in memory) before incrementing
         return self.current - 1
 
 
@@ -88,10 +90,10 @@ def infinite_integers():
 
 
 if __name__ == "__main__":
-    # main()
+    main()
     # # Example of using iterator for looping
-    # for n in MyRange(1, 5):
-    #     print(n)
+    for n in MyRange(1, 5):
+        print(n)
     # integers is an iterator as it has the "next" method
     integers = infinite_integers()
     print(next(integers))  # 0

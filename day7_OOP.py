@@ -127,7 +127,6 @@ class Bank1:
         self.transactions.append(
             {"id": idnum, "Date": date, "Type": transtype, "Amount": amount}
         )
-        # f"Hi {self.name}, here is your list of transactions:\n" for nice function later
         return self.transactions
 
 
@@ -166,9 +165,9 @@ print(caleb.transactions)
 print(gemma.transactions)
 
 
-# Encapsulation = methods and variables of class all in one place (for objects to be attched to and be able to access)
+# Encapsulation = methods and variables of class all in one place (for objects to be attached to and be able to access)
 class Bank2:
-    # Class variable | All your instances share this variables
+    # Class variable | All your instances share this variable
     interest_rate = 0.02
 
     def __init__(
@@ -224,7 +223,6 @@ class Bank2:
         self.transactions.append(
             {"id": idnum, "Date": date, "Type": transtype, "Amount": amount}
         )
-        # f"Hi {self.name}, here is your list of transactions:\n" for nice function later
         return self.transactions
 
     def apply_interest(self):
@@ -237,7 +235,7 @@ class Bank2:
 gemma = Bank2(123, "Gemma Porrill", 15_000)
 dhara = Bank2(124, "Dhara Kara", 50_001)
 caleb = Bank2(125, "Caleb Potts", 100_000)
-
+# Nones
 print(gemma.apply_interest())
 print(dhara.apply_interest())
 print(caleb.apply_interest())
@@ -277,7 +275,7 @@ class Bank3:
         print(self.name, Bank3.totalaccounts)
 
     # class method | cls -> Class
-    # when we want to update a class or differentiate between classes
+    # when we want to update a class
     @classmethod
     def update_total_accounts(cls, numaccounts):
         # Bank3.totalaccounts = numaccounts # when referring to another class use this
@@ -345,7 +343,7 @@ class Bank3:
         return f"In total we have {Bank3.totalaccounts} accounts"
 
 
-# create 4 accounts
+# create 4 accounts | has print statements inside
 gemma = Bank3(123, "Gemma Porrill", 15_000)
 dhara = Bank3(124, "Dhara Kara", 50_001)
 caleb = Bank3(125, "Caleb Potts", 100_000)
@@ -377,7 +375,7 @@ class Circle:
     # "Circle." -> therefore has to be a class method
     def from_diameter(cls, diameter):
         radius = diameter / 2  # get radius
-        return cls(radius)  # make and return new circle with it
+        return cls(radius)  # make and return new circle with it = "Circle(radius)"
 
     # instance method | self -> instance/object
     def calculate_area(self):
@@ -548,7 +546,7 @@ class Bank4:
         self._balance += amount
 
 
-# create 3 accounts
+# create 4 accounts | built in prints
 gemma = Bank4(123, "Gemma Porrill", 15_000)
 dhara = Bank4(124, "Dhara Kara", 50_001)
 caleb = Bank4(125, "Caleb Potts", 100_000)
@@ -590,15 +588,15 @@ class CheckingAccount(Bank4):
 
     # override str() which is used to print by default with print()
     # when you print an instance of CheckingAccount, gives you a nice readable output of info.
-    # def __str__(self):
-    #     """For human readble output"""
-    #     return (
-    #         f"This account belongs to {self.name} and has balance of R{self._balance:,}"
-    #     )
+    def __str__(self):
+        """For human readble output"""
+        return (
+            f"This account belongs to {self.name} and has balance of R{self._balance:,}"
+        )
 
     #
     def __repr__(self):
-        """For DX: String -> Class"""
+        """For DX: String -> Class (String representing the logic/structure of a Class)"""
         return f"CheckingAccount({self.accno}, '{self.name}', {self._balance})"
 
     # override add
@@ -616,20 +614,17 @@ print(gemma.display_balance())  # 1_050
 # CheckingAccount - withdraw  R1
 alex = CheckingAccount(126, "Alex Lazarus", 100)
 caleb = CheckingAccount(125, "Caleb Potts", 100_000)
-print(alex.withdraw(50))  # 49 value
-# overrides str method which is called by default with print()
+print(alex.withdraw(50))  # 49 value in account left
+# overridden normal print -> normal output is: CheckingAccount(126, 'Alex Lazarus', 49)
 print(alex)
-# overrides str method, normal output is: CheckingAccount(126, 'Alex Lazarus', 49)
+# overrides __str__ dunder method which is called by default with print()
 print(str(alex))
 
 # reconstructs the instance
 # print(alex.__repr__())
 print(repr(alex))  # preferred syntax
-print(alex + caleb)  # overrides + method
+print(alex + caleb)  # __add__ dunder method overrides + method
 print(alex._balance)  # can access protected value
-
-# Questions!!!!!!!!!!!!!!!!!!!
-# What is point of using __str__ specifically. Can't any instance method do what it is doing here
 
 
 # Assignment

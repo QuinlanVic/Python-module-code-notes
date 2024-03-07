@@ -19,7 +19,7 @@ def market():
 
 
 # get_price() # unknown
-market()
+print(market())  # None
 
 
 def cool():

@@ -25,7 +25,7 @@ def math_divide2(num1, num2):
         print("You cannot divide by zero bro")
     # not mandatory to have "else" and "finally" blocks
     else:
-        print("Diviion was successful")
+        print("Division was successful")
     finally:
         # Runs no matter what hehe
         print("Operation done!")
@@ -71,7 +71,7 @@ class NegativeNumberError(Exception):
     def __init__(self, value):
         self.value = value
         self.message = "Negative numbers are not allowed"
-        # here we create instance of class using base method, giving it extra message var
+        # here we create instance of class using base method, giving it custom message
         super().__init__(self.message)
 
     # Override print() for base class of Exception

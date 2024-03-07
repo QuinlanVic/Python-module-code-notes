@@ -1,9 +1,10 @@
+<!-- declares document type -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- attributes: lang, src, charset, name, content -->
     <!-- meta/img = Self closing tags, do not have closing tag -->
-    <!-- "UTF-8" -> file encoding (unicode) -->
+    <!-- "UTF-8" -> file character encoding (unicode) -->
     <!-- renders/supports emojis, all language characters e.g., hindi, mandarin, japanese -->
     <meta charset="UTF-8">
     <!-- Adapt phone = viewport and stuff -->
@@ -50,6 +51,10 @@
             /* fancy branding */
             letter-spacing: 10px;
         }
+        a {
+            text-decoration: none;
+            color: hotpink;
+        }
     </style>
     <!-- Separation of concern -->
     <!-- External CSS: Most preferred* -->
@@ -60,7 +65,7 @@
 <body>
     <ul class = "navigation">
         <li><a href="/">Home</a></li>
-        <li><a href="/selector.html">Selector</a></li>
+        <li><a href="/day10_selector.html">Selector</a></li>
         <li><a href="https://www.google.com/">Google</a></li>
     </ul>
     <img src="" alt="">
@@ -111,8 +116,6 @@ This is outside of body
 <!-- ! + <tab> -> boiler plate code -->
 
 <!-- document.designMode = "on" -->
-
-<!-- Assignment = BEAST poster -->
 
 <!-- Figma hints -->
 <!-- Can make and save different variants of the same thing and put them on different pages -->
