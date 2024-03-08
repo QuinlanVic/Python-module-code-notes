@@ -51,20 +51,26 @@ SELECT * FROM Buildings;
 -- List all buildings and the distinct employee roles in each building (including empty buildings) 
 SELECT DISTINCT building_name, role FROM Buildings LEFT JOIN Employees on building = building_name;
 
+-- LESSON 8
 -- Find the name and role of all employees who have not been assigned to a building
 SELECT * FROM employees LEFT JOIN Buildings on building = building_name WHERE building_name IS NULL;
+-- Or (Don't need join)
+SELECT Name, Role FROM employees WHERE Building IS NULL;
 -- Find the names of the buildings that hold no employees
 SELECT * FROM Buildings LEFT JOIN employees on building = building_name WHERE Name IS NULL;
+-- Or 
+SELECT DISTINCT building_name FROM Buildings LEFT JOIN employees on building = building_name WHERE Building IS NULL;
 
+-- LESSON 9
 -- List all movies and their combined sales in millions of dollars 
-SELECT Title, (International_sales + Domestic_sales) / 1000000 AS gross_millions FROM movies INNER JOIN Boxoffice WHERE id = movie_id;
+SELECT Title, (International_sales + Domestic_sales) / 1000000 AS gross_millions FROM movies INNER JOIN Boxoffice ON id = movie_id;
 -- List all movies and their ratings in percent
-SELECT Title, rating * 10 AS rating_percentage FROM movies INNER JOIN Boxoffice WHERE id = movie_id;
--- List all movies that were released on even number years
+SELECT Title, rating * 10 AS rating_percentage FROM movies INNER JOIN Boxoffice ON id = movie_id;
+-- List all movies that were released on even number years % = MODULUS OPERATOR)
 SELECT Title, Year FROM movies WHERE Year % 2 = 0;
 
 -- Find the longest time that an employee has been at the studio
-SELECT MAX(Years_employed) AS Max_years_employed FROM employees;
+SELECT *, MAX(Years_employed) AS Max_years_employed FROM employees;
 -- For each role, find the average number of years employed by employees in that role
 SELECT role, AVG(Years_employed) AS Avg_Years_Employed FROM employees GROUP BY role;
 -- Find the total number of employee years worked in each building
@@ -77,6 +83,8 @@ SELECT Building, SUM(Years_employed) AS Total_number_of_employee_years FROM empl
 
 -- Find the number of Artists in the studio (without a HAVING clause)
 SELECT Role, COUNT(Role) AS Number_of_artists FROM employees WHERE role = "Artist";
+-- Or
+SELECT role, COUNT(role) AS total_artists FROM employees GROUP BY role HAVING role = "Artist";
 -- Find the number of Employees of each role in the studio
 SELECT role, COUNT(*) AS Num_employees FROM employees GROUP BY role;
 -- Find the total number of years employed by all Engineers
@@ -98,3 +106,106 @@ FROM movies
     INNER JOIN boxoffice
         ON movies.id = boxoffice.movie_id
 GROUP BY director;
+
+-- ORDER MATTERS
+Complete SELECT query
+SELECT DISTINCT column, AGG_FUNC(column_or_expression), …
+FROM mytable
+    JOIN another_table
+      ON mytable.column = another_table.column
+    WHERE constraint_expression
+    GROUP BY column
+    HAVING constraint_expression
+    ORDER BY column ASC/DESC
+    LIMIT count OFFSET COUNT;
+
+-- INSERTS
+-- Add the studio's new production, Toy Story 4 to the list of movies (you can use any director)
+INSERT into movies VALUES (11, "Toy Story 4", "John Lasseter", 2019, 90);
+-- or (specify columns)
+INSERT INTO movies (Title, Director, Year, Length_minutes) VALUES ("Toy Story 4", "John Lasseter", 2019, 90)
+-- or (include id sos it isn't added at the end)
+INSERT INTO movies (id, Title, Director, Year, Length_minutes) VALUES (11, "Toy Story 4", "John Lasseter", 2019, 90)
+
+-- Toy Story 4 has been released to critical acclaim! It had a rating of 8.7, and made 340 million domestically and 270 million internationally. Add the record to the BoxOffice table.
+INSERT INTO boxoffice VALUES (11, 8.7, 340000000, 270000000)
+
+-- UPDATES
+-- Write SET then WHERE
+-- UPDATE mytable
+-- SET column = value_or_expr, 
+--     other_column = another_value_or_expr, 
+--     …
+-- WHERE condition;
+
+-- Or you can use *ID* AS IT IS UNIQUE and other titles could be the same!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+-- The director for A Bug's Life is incorrect, it was actually directed by John Lasseter
+UPDATE Movies
+    SET Director = "John Lasseter"
+        WHERE title = "A Bug's Life";
+
+    SET Director = "John Lasseter"
+        WHERE title = "A Bug's Life";
+-- The year that Toy Story 2 was released is incorrect, it was actually released in 1999
+UPDATE Movies
+    SET Year = 1999
+        WHERE title = "Toy Story 2";
+-- Both the title and director for Toy Story 8 is incorrect! The title should be "Toy Story 3" and it was directed by Lee Unkrich
+UPDATE movies
+    SET title = "Toy Story 3", Director = "Lee Unkrich"
+        WHERE title = "Toy Story 8";
+
+-- DELETES
+-- DELETE FROM mytable
+-- WHERE condition;
+-- NB! Use SELECT BEFORE DELETE TO MAKE SURE YOU ARE DELETING THE RIGHT STUFF
+-- This database is getting too big, lets remove all movies that were released before 2005.
+SELECT * FROM movies WHERE Year < 2005;
+DELETE FROM movies WHERE Year < 2005;
+-- Andrew Stanton has also left the studio, so please remove all movies directed by him.
+SELECT * from movies WHERE Director = "Andrew Stanton";
+DELETE FROM MOVIES WHERE Director = "Andrew Stanton";
+
+-- BEEN LEARNING DML (Data Manipulation Language) commands (only changes data in tables)
+-- NOW LEARNING DDL () commands (now changing tables themselves)
+
+-- CREATE TABLES
+-- CREATE TABLE IF NOT EXISTS mytable (
+--     column DataType TableConstraint DEFAULT default_value,
+--     another_column DataType TableConstraint DEFAULT default_value,
+--     …
+-- );
+-- Table Schema
+-- CREATE TABLE movies (
+--     id INTEGER PRIMARY KEY,
+--     title TEXT,
+--     director TEXT,
+--     year INTEGER, 
+--     length_minutes INTEGER
+-- );
+-- Create a new table named Database with the following columns:
+-- Name A string (text) describing the name of the database
+-- Version A number (floating point) of the latest version of this database
+-- Download_count An integer count of the number of times this database was downloaded
+This table has no constraints. 
+CREATE TABLE IF NOT EXISTS Database (
+    Name TEXT,
+    Version FLOAT,
+    Download_count INTEGER
+);
+
+-- ALTERING TABLES
+-- Add a column named Aspect_ratio with a FLOAT data type to store the aspect-ratio each movie was released in. 
+-- Don't need the COLUMN keyword
+ALTER TABLE Movies
+  ADD COLUMN Aspect_ratio FLOAT DEFAULT 2.39;
+-- Add another column named Language with a TEXT data type to store the language that the movie was released in. Ensure that the default for this language is English. 
+ALTER TABLE Movies
+  ADD COLUMN Language TEXT DEFAULT "English";
+
+-- Dropping tables
+-- Fails silently if the table does not exist
+DROP TABLE IF EXISTS movies;
+-- And drop the BoxOffice table as well
+DROP TABLE IF EXISTS BoxOffice;
+
