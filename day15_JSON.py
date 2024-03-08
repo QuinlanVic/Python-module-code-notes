@@ -128,11 +128,19 @@ with open("blog_post.json", "r") as file:
     print(blog_post_data, type(blog_post_data))
 
 # change data to summary of posts
+print("Posts summary")
 post_summary = {}
 post_list = []
 for post in blog_post_data["posts"]:
-    post_summary["posts_summary"] = post_list.append(post_summary["posts_summary"])
-
+    post_list.append(
+        {
+            "title": post["title"],
+            "author": post["author"],
+            "number_of_comments": len(post["comments"]),
+        }
+    )
+    post_summary["posts_summary"] = post_list
+print(post_summary)
 # write a file
 with open("posts_summary.json", "w") as file:
     # dump the file as json
