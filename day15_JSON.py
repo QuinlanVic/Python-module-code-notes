@@ -103,6 +103,7 @@ bank_data_updated = [
 pprint(bank_data_updated)
 # Convert list into a JSON multi-line strng
 # indent 4 = prints each one with 4 spaces from left (1 tab indent)
+# more human readable, not just a one line string
 bank_data_json = json.dumps(bank_data_updated, indent=4)
 print(type(bank_data_json))
 print(bank_data_json)
@@ -121,6 +122,7 @@ with open("bank_accounts.json", "r") as file:
     data = json.load(file)
     print(data, type(data))
 
+# ***********************************************************************JSON TASK***********************************************************************
 # Read blog_post.json
 with open("blog_post.json", "r") as file:
     # load the file
@@ -142,6 +144,7 @@ for post in blog_post_data["posts"]:
     post_summary["posts_summary"] = post_list
 print(post_summary)
 # write a file
+# write posts_summary.json
 with open("posts_summary.json", "w") as file:
     # dump the file as json
     json.dump(post_summary, file, indent=4)

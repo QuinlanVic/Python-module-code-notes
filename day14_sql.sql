@@ -167,7 +167,7 @@ SELECT * from movies WHERE Director = "Andrew Stanton";
 DELETE FROM MOVIES WHERE Director = "Andrew Stanton";
 
 -- BEEN LEARNING DML (Data Manipulation Language) commands (only changes data in tables)
--- NOW LEARNING DDL () commands (now changing tables themselves)
+-- NOW LEARNING DDL (Data Definition Language) commands (now changing tables themselves)
 
 -- CREATE TABLES
 -- CREATE TABLE IF NOT EXISTS mytable (
