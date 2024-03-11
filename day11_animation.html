@@ -39,7 +39,7 @@
         /* animate */
         /* all the properties of box transition over the course of 2 seconds */
         /* can animate specific properties that can be animated */
-        transition: 2s all;
+        transition: 0.2s all;
         /* make it a hand to touch*/
         cursor: pointer;
     }
@@ -52,14 +52,14 @@
     /* mouse-click */
     .box:active {
         background: teal;
-        transform: scale(0.9) rotate(360deg) translateY(40px);
+        transform: scale(0.5) rotate(360deg) translateY(40px);
         /* turns into a circle */
         border-radius: 50%;
     }
     /* psuedo class - fake/temporary class that are activated when an action takes place e.g. hover/click */
 </style>
 <body>
-    <!-- <div class="box"></div> -->
+    <div class="box"></div>
     <!-- <div class="thumbsup"> -->
         <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
         <p class = "tu"><i class="fa-solid fa-heart"></i></p>
