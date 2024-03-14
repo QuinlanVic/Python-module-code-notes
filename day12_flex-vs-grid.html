@@ -9,18 +9,21 @@
       .box2,
       .box3 {
         /* keep side by side but breaks with resizing :( */
+        /* respects height and width but keeps divs/elements next to each other */
         display: inline-block;
-        /* height: 300px; */
-        /* width: 200px; */
+        height: 300px;
+        width: 200px;
       }
- 
+      
       .box1 {
         background: plum;
+        /* you can see the text does not stay in the boxes 1 and 2 (too smol width) */
         width: 50px;
       }
  
       .box2 {
         background: purple;
+        /* you can see the text does not stay in the boxes 1 and 2 (too smol width) */
         width: 50px;
       }
  
@@ -31,12 +34,13 @@
  
       .container {
          /* keep everything side by side, do what you gotta do */
-        display: flex;
+        /* display: flex; */
         /* Only knows 1d (direction) and just works with horixontal rows or vertical columns once at a time */
+        /* Has columns wrap underneath each other as sizes change, without it everything stays next to each other no matter the size */
         /* flex-wrap: wrap; */
         /* grid = fills space to keep sizes the same as much as possible */
-        /* display: grid; */
-        /* flex-wrap: wrap; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
         /* can use "gap" for rows and columns indv or both */
       }
     </style>

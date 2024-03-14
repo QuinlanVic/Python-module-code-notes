@@ -37,11 +37,11 @@ SELECT City, population FROM north_american_cities WHERE Country = "United State
 -- Inner join
 -- Find the domestic and international sales for each movie
 SELECT Title, Domestic_sales, International_sales FROM movies INNER JOIN Boxoffice on movies.id = boxoffice.movie_id;
--- Don't need to give table.id as it is uncommon amongst them and so no confusions can happen
+-- Or - Don't need to give table.id as it is uncommon amongst them and so no confusions can happen
 SELECT Title, Domestic_sales, International_sales FROM movies INNER JOIN Boxoffice on id = movie_id;
 -- Show the sales numbers for each movie that did better internationally rather than domestically
 SELECT Title, Domestic_sales, International_sales FROM movies INNER JOIN Boxoffice on movies.id = boxoffice.movie_id WHERE International_sales > Domestic_sales;
--- List all the movies by their ratings in descending orde
+-- List all the movies by their ratings in descending order
 SELECT Title, Rating FROM movies INNER JOIN boxoffice WHERE movies.id = boxoffice.movie_id ORDER BY Rating DESC;
 
 -- Find the list of all buildings that have employees
@@ -66,7 +66,7 @@ SELECT DISTINCT building_name FROM Buildings LEFT JOIN employees on building = b
 SELECT Title, (International_sales + Domestic_sales) / 1000000 AS gross_millions FROM movies INNER JOIN Boxoffice ON id = movie_id;
 -- List all movies and their ratings in percent
 SELECT Title, rating * 10 AS rating_percentage FROM movies INNER JOIN Boxoffice ON id = movie_id;
--- List all movies that were released on even number years % = MODULUS OPERATOR)
+-- List all movies that were released on even number years. % = MODULUS OPERATOR)
 SELECT Title, Year FROM movies WHERE Year % 2 = 0;
 
 -- Find the longest time that an employee has been at the studio
@@ -75,12 +75,12 @@ SELECT *, MAX(Years_employed) AS Max_years_employed FROM employees;
 SELECT role, AVG(Years_employed) AS Avg_Years_Employed FROM employees GROUP BY role;
 -- Find the total number of employee years worked in each building
 SELECT Building, SUM(Years_employed) AS Total_number_of_employee_years FROM employees GROUP BY Building;
+
 -- The HAVING clause constraints are written the same way as the WHERE clause constraints
 -- , and are applied to the grouped rows. With our examples, this might not seem like 
 -- a particularly useful construct, but if you imagine data with millions of rows with 
 -- different properties, being able to apply additional constraints is often necessary 
 -- to quickly make sense of the data.
-
 -- Find the number of Artists in the studio (without a HAVING clause)
 SELECT Role, COUNT(Role) AS Number_of_artists FROM employees WHERE role = "Artist";
 -- Or
@@ -108,16 +108,16 @@ FROM movies
 GROUP BY director;
 
 -- ORDER MATTERS
-Complete SELECT query
-SELECT DISTINCT column, AGG_FUNC(column_or_expression), …
-FROM mytable
-    JOIN another_table
-      ON mytable.column = another_table.column
-    WHERE constraint_expression
-    GROUP BY column
-    HAVING constraint_expression
-    ORDER BY column ASC/DESC
-    LIMIT count OFFSET COUNT;
+-- Complete SELECT query
+-- SELECT DISTINCT column, AGG_FUNC(column_or_expression), …
+-- FROM mytable
+--     JOIN another_table
+--       ON mytable.column = another_table.column
+--     WHERE constraint_expression
+--     GROUP BY column
+--     HAVING constraint_expression
+--     ORDER BY column ASC/DESC
+--     LIMIT count OFFSET COUNT;
 
 -- INSERTS
 -- Add the studio's new production, Toy Story 4 to the list of movies (you can use any director)
