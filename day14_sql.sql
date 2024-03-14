@@ -108,7 +108,7 @@ FROM movies
 GROUP BY director;
 
 -- ORDER MATTERS
--- Complete SELECT query
+-- Complete SELECT query!!!!!
 -- SELECT DISTINCT column, AGG_FUNC(column_or_expression), …
 -- FROM mytable
 --     JOIN another_table
@@ -124,10 +124,11 @@ GROUP BY director;
 INSERT into movies VALUES (11, "Toy Story 4", "John Lasseter", 2019, 90);
 -- or (specify columns)
 INSERT INTO movies (Title, Director, Year, Length_minutes) VALUES ("Toy Story 4", "John Lasseter", 2019, 90)
--- or (include id sos it isn't added at the end)
+-- or (include id specifically so it isn't added at the end)
 INSERT INTO movies (id, Title, Director, Year, Length_minutes) VALUES (11, "Toy Story 4", "John Lasseter", 2019, 90)
 
 -- Toy Story 4 has been released to critical acclaim! It had a rating of 8.7, and made 340 million domestically and 270 million internationally. Add the record to the BoxOffice table.
+-- have to ensure ids are the same
 INSERT INTO boxoffice VALUES (11, 8.7, 340000000, 270000000)
 
 -- UPDATES
@@ -145,7 +146,7 @@ UPDATE Movies
         WHERE title = "A Bug's Life";
 
     SET Director = "John Lasseter"
-        WHERE title = "A Bug's Life";
+        WHERE id = _;
 -- The year that Toy Story 2 was released is incorrect, it was actually released in 1999
 UPDATE Movies
     SET Year = 1999
@@ -183,12 +184,14 @@ DELETE FROM MOVIES WHERE Director = "Andrew Stanton";
 --     year INTEGER, 
 --     length_minutes INTEGER
 -- );
+
 -- Create a new table named Database with the following columns:
 -- Name A string (text) describing the name of the database
 -- Version A number (floating point) of the latest version of this database
 -- Download_count An integer count of the number of times this database was downloaded
-This table has no constraints. 
+-- This table has no constraints. 
 CREATE TABLE IF NOT EXISTS Database (
+    -- id INTEGER PRIMARY KEY
     Name TEXT,
     Version FLOAT,
     Download_count INTEGER
@@ -199,12 +202,14 @@ CREATE TABLE IF NOT EXISTS Database (
 -- Don't need the COLUMN keyword
 ALTER TABLE Movies
   ADD COLUMN Aspect_ratio FLOAT DEFAULT 2.39;
--- Add another column named Language with a TEXT data type to store the language that the movie was released in. Ensure that the default for this language is English. 
+-- Add another column named Language with a TEXT data type to store the language that the movie was released in. 
+-- Ensure that the default for this language is English. 
 ALTER TABLE Movies
   ADD COLUMN Language TEXT DEFAULT "English";
 
 -- Dropping tables
 -- Fails silently if the table does not exist
+-- Drop the movies table
 DROP TABLE IF EXISTS movies;
 -- And drop the BoxOffice table as well
 DROP TABLE IF EXISTS BoxOffice;

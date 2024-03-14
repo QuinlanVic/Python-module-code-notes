@@ -13,7 +13,7 @@ print(type(data))
 print(data["employees"][0]["age"])
 
 # Convert Dictionary to JSON = JavaScipt Object Notation
-# pretty print with indent 4
+# print with indent 4
 data_json = json.dumps(data, indent=4)
 # It's a string (multi-line)
 print(type(data_json))
@@ -71,7 +71,7 @@ bank_data = """
     }
 ]
 """
-# All Active users' balance should increased by 10%
+# All Active users' balances should be increased by 10%
 # Final Output in JSON format
 # convert to a list
 bank_data_list = json.loads(bank_data)
@@ -84,14 +84,15 @@ print(type(bank_data_list))
 # pprint(bank_data_list)
 
 # easy to put into a file
+# Convert back into a JSON string
 # bank_accounts_json = json.dumps(bank_data_list, indent=4)
 # print("JSON string")
 # print(bank_accounts_json)
-# does nothing extra as it is a string unless you use indent=4 (only pretty prints )
+# pretty print does nothing extra as it is a string unless you use indent=4
 # pprint(bank_accounts_json)
 
 # OR
-
+# List comprehension
 bank_data_updated = [
     (
         {**account, "balance": account["balance"] + (account["balance"] * 0.1)}
@@ -102,7 +103,7 @@ bank_data_updated = [
 ]
 pprint(bank_data_updated)
 # Convert list into a JSON multi-line strng
-# indent 4 = prints each one with 4 spaces from left (1 tab indent)
+# indent=4 -> prints each one with 4 spaces from left (1 tab indent)
 # more human readable, not just a one line string
 bank_data_json = json.dumps(bank_data_updated, indent=4)
 print(type(bank_data_json))
@@ -113,13 +114,16 @@ print(bank_data_json)
 # filename, write command
 # Write a file
 with open("bank_accounts.json", "w") as file:
-    # "dump" not "dumps" as it is creating a file
+    # "dump" not "dumps" as it is creating a JSON file
+    # ugly if you send json string to file (bank_data_json)
+    # "[\n    {\n        \"id\": 1,\n        \"name\": \"John Doe\",\n        \"email\": \"johndoe@example.com\",\n        \"isActive\": true,\n        \"balance\": 165.825\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Jane Smith\",\n        \"email\": \"janesmith@example.com\",\n        \"isActive\": false,\n        \"balance\": 500.5\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Emily Jones\",\n        \"email\": \"emilyjones@example.com\",\n        \"isActive\": true,\n        \"balance\": 0.0\n    }\n]"
     json.dump(bank_data_updated, file, indent=4)
 
 # Read a file
 with open("bank_accounts.json", "r") as file:
-    # "load" to load a file
+    # "load" not "loads" to load a file (not JSON)
     data = json.load(file)
+    print("HEREEEEEEEEEEEEEEEEEEE")
     print(data, type(data))
 
 # ***********************************************************************JSON TASK***********************************************************************
@@ -127,6 +131,7 @@ with open("bank_accounts.json", "r") as file:
 with open("blog_post.json", "r") as file:
     # load the file
     blog_post_data = json.load(file)
+    # dictionary was read/loaded in
     print(blog_post_data, type(blog_post_data))
 
 # change data to summary of posts
@@ -141,12 +146,12 @@ for post in blog_post_data["posts"]:
             "number_of_comments": len(post["comments"]),
         }
     )
-    post_summary["posts_summary"] = post_list
+post_summary["posts_summary"] = post_list
 print(post_summary)
 # write a file
 # write posts_summary.json
 with open("posts_summary.json", "w") as file:
-    # dump the file as json
+    # dump to a file (as json)
     json.dump(post_summary, file, indent=4)
 
 # Expected Output
