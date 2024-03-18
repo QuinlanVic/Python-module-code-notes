@@ -38,15 +38,15 @@ async def print_countdown(msg):
 
 async def countdown():
     # these are async that have to be awaited since they are inside another async function
-    await print_countdown(3)
-    await print_countdown(2)
-    await print_countdown(1)
+    await print_countdown(3)  # sync
+    await print_countdown(2)  # sync
+    await print_countdown(1)  # sync
     await print_countdown("Happy New Year 🎊")
 
 
 # all async functions return a coroutine
 # print(type(countdown()))
-asyncio.run(countdown())
+# asyncio.run(countdown())
 
 # Event Loop: Behind Async function
 # our code will (line by line) be placed in a call stack
@@ -76,12 +76,175 @@ def sum(a, b):
     return c
 
 
-print(sum(3, 5))
+# print(sum(3, 5))
 
 
 # def dbl(x):
 #     y = x * 2
 #     dbl(y)
-
-
 # dbl(10) # infinite loop
+
+# Event loop will only push to the stack when the call stack is empty
+# during that time it sits in the callback queue
+# The async function will be scheduled until the call stack is empty
+
+
+# async def cooking_eggs():
+#     print("Egg cooking")
+#     await asyncio.sleep(3)
+#     print("Eggs cooked ✅")
+
+
+# async def make_coffee():
+#     print("Coffee brewing ☕")
+#     await asyncio.sleep(2)
+#     print("Coffee done ✅")
+
+
+# async function with the event loop
+# async def main():
+#     # Request to event loop to schedule
+# Event loop manages scheduling between callback queue and call stack
+#     task1 = asyncio.create_task(cooking_eggs())  # concurrently
+#     task2 = asyncio.create_task(make_coffee())  # concurrently
+#     # await background_task()
+#     # waiting for the background task
+#     print("Bread Toast 1")
+#     print("Bread Toast 2")
+#     print("Bread Toast 3")
+#     print("Bread Toast 4")
+#     # have to place the await here as otherwise the task will execute in the background but
+#     # if the "main" function finishes executing before the background task it will not complete
+
+#     # do not know which task will take longer to execute and therefore cannot predict which one to await
+#     # if you choose the wrong one then some code of one of the tasks may not execute
+#     # await task1
+#     # await task2
+
+#     # wait until the longest one completes
+#     await asyncio.wait({task1, task2}) # set of tasks to wait for
+
+
+# asyncio.run(main())
+
+
+# async def cooking_eggs():
+#     print("Egg cooking 🥚")
+#     await asyncio.sleep(3)
+#     print("Eggs cooked ✅")
+#     return f"Data - Eggs 🥚"
+
+
+# async def make_coffee():
+#     print("Coffee brewing ☕")
+#     await asyncio.sleep(2)
+#     print("Coffee done ✅")
+#     return f"Data - Coffee ☕"
+
+
+# async def make_cereal():
+#     print("Making Cereal bowl 🧃")
+#     await asyncio.sleep(5)
+#     print("Cereal done ✅")
+#     return f"Data - Cereal 🧃"
+
+
+# async def main():
+#     # Request to event loop to schedule
+#     # task1 = asyncio.create_task(cooking_eggs())  # concurrently
+#     # task2 = asyncio.create_task(make_coffee())  # concurrently
+#     # task3 = asyncio.create_task(make_cereal())  # concurrently
+
+#     # all_tasks = [task1, task2, task3]
+
+#     all_tasks = [
+#         asyncio.create_task(cooking_eggs()),  # concurrently
+#         asyncio.create_task(make_coffee()),  # concurrently
+#         asyncio.create_task(make_cereal()),  # concurrently
+#     ]
+
+#     # waiting for the background task
+#     print("Bread Toast 1")
+#     print("Bread Toast 2")
+#     print("Bread Toast 3")
+#     print("Bread Toast 4")
+
+#     # wait until the longest one completes
+#     # await asyncio.gather(all_tasks[0], all_tasks[1], all_tasks[2])
+#     # takes in a list and we can unpack it (simpler)
+#     data = await asyncio.gather(*all_tasks)
+#     # print(type(data)) # list
+#     # order of data depends on order of tasks put into all_tasks
+#     print(data)
+
+
+# asyncio.run(main())
+
+
+async def cooking_eggs():
+    print("Egg cooking 🥚")
+    await asyncio.sleep(3)
+    print("Eggs cooked ✅")
+    return f"Data - Eggs 🥚"
+
+
+async def make_coffee():
+    print("Coffee brewing ☕")
+    await asyncio.sleep(2)
+    print("Coffee done ✅")
+    return f"Data - Coffee ☕"
+
+
+async def make_cereal():
+    print("Making Cereal bowl 🧃")
+    await asyncio.sleep(5)
+    print("Cereal done ✅")
+    return f"Data - Cereal 🧃"
+
+
+async def main():
+    # Request to event loop to schedule
+    # task1 = asyncio.create_task(cooking_eggs())  # concurrently
+    # task2 = asyncio.create_task(make_coffee())  # concurrently
+    # task3 = asyncio.create_task(make_cereal())  # concurrently
+
+    # scheduling is done immediately when tasks are created
+    # starts before sleep starts and finishes before sleep has ended
+    # all_co_routines = [
+    #     asyncio.create_task(cooking_eggs()),  # concurrently
+    #     asyncio.create_task(make_coffee()),  # concurrently
+    #     asyncio.create_task(make_cereal()),  # concurrently
+    # ]
+
+    # vs
+
+    # put into a list but no scheduling is done immediately
+    # starts only after sleep
+    all_co_routines = [
+        # do not need to mention/create tasks
+        # it is ok if they are all async functions
+        cooking_eggs(),  # concurrently
+        make_coffee(),  # concurrently
+        make_cereal(),  # concurrently
+    ]
+
+    # waiting for the background task
+    print("Bread Toast 1")
+    print("Bread Toast 2")
+    print("Bread Toast 3")
+    print("Bread Toast 4")
+
+    print("Sleep started (6 sec hehe)")
+    await asyncio.sleep(6)
+    print("Sleep ended")
+
+    # takes in a list and we can unpack it (simpler)
+    # the scheduling only happens here if the elements in the list are not tasks!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # each element/co-routine is passed to "gather" without having to list it explicitly
+    data = await asyncio.gather(*all_co_routines)
+    # print(type(data)) # list
+    # order of data depends on order of tasks put into all_tasks
+    print(data)
+
+
+asyncio.run(main())
