@@ -4,14 +4,18 @@ import asyncio
 # have to mark function as async
 async def hello_world():
     print("Started 🌏")
+
     # another async function in an async function
     # therefore you have to "await" it and you pause execution until you continue with the "hello_world" function
+    # have to wait for sleep to be completed for "hello_world" to complete
+    # (if you do not then the function is pushed into the wait loop and is cancelled when "hello_world" completes)
+    # awaits are all generators in disguise (pausing execution like "yield")
     await asyncio.sleep(3)
     print("Hello, Sanlam🌏")
 
 
 # how to run an async function
-# asyncio.run(hello_world())
+asyncio.run(hello_world())
 
 
 # Task 1 + 2 countdown
@@ -21,6 +25,7 @@ async def countdown(count):
         # or
         # for i in reversed(range(1, count + 1)):
         print(i)
+        # async function inside of async function
         await asyncio.sleep(1)
     print("Happy New Year 🎊")
 
@@ -103,7 +108,7 @@ def sum(a, b):
 
 # async function with the event loop
 # async def main():
-#     # Request to event loop to schedule
+#     # Request to event loop to schedule immediately after creating the task
 # Event loop manages scheduling between callback queue and call stack
 #     task1 = asyncio.create_task(cooking_eggs())  # concurrently
 #     task2 = asyncio.create_task(make_coffee())  # concurrently
@@ -171,7 +176,9 @@ def sum(a, b):
 
 #     # wait until the longest one completes
 #     # await asyncio.gather(all_tasks[0], all_tasks[1], all_tasks[2])
+
 #     # takes in a list and we can unpack it (simpler)
+#     # want to fire all async functions together concurrently!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #     data = await asyncio.gather(*all_tasks)
 #     # print(type(data)) # list
 #     # order of data depends on order of tasks put into all_tasks
@@ -240,7 +247,7 @@ async def main():
 
     # takes in a list and we can unpack it (simpler)
     # the scheduling only happens here if the elements in the list are not tasks!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    # each element/co-routine is passed to "gather" without having to list it explicitly
+    # each element must be a task/co-routine and is passed to "gather" without having to list it explicitly
     data = await asyncio.gather(*all_co_routines)
     # print(type(data)) # list
     # order of data depends on order of tasks put into all_tasks
@@ -248,3 +255,49 @@ async def main():
 
 
 asyncio.run(main())
+
+# When things are dependent on one another you cannot do it asynchronously
+# If they are not then you can do asynchronously
+
+
+async def make_coffee():
+    print("Coffee brewing")
+    await asyncio.sleep(2)
+    print("Coffee done")
+    return f"Data - Coffee"
+
+
+async def cooking_eggs():
+    print("Egg cooking")
+    await asyncio.sleep(3)
+    print("Eggs cooked")
+    return f"Data - Eggs cooked"
+
+
+# co-routine (async function returns a co-routine) = Box(f"Data - Eggs Cooked") | Box -> co-routine
+result1 = cooking_eggs()
+# string = f"Data - Eggs Cooked" | opens box -> await co-routine
+# result2 = await cooking_eggs()
+result3 = make_coffee()
+# result4 = await make_coffee()
+
+type(result1)  # co-routine
+# type(result2) # string
+
+asyncio.gather(result1, result3)  # Box([output, output2])
+# This is why we use no await inside gather and then an await outside with gather
+# (and because it is called inside an async function and is an async function itself)
+# await gather(result1, result3) # [output1, output2]
+
+# therefore for gather you have to use the co-routines, not awaits as they return strings and you need to
+
+# Mock API = all CRUD operations and it is free (e.g. can't delete from chrome)
+
+# event loop is only called when working with asynch functions
+# async.run() is where it starts
+# ends when call stack is empty
+# functions not waited for are thrown out of event loop if parent async function ends before they complete
+
+# call stack = FILO / LIFO
+# function calls inside of other functions builds the stack
+# block things when call stack is busy and nothing cna enter

@@ -594,7 +594,7 @@ class CheckingAccount(Bank4):
             f"This account belongs to {self.name} and has balance of R{self._balance:,}"
         )
 
-    #
+    # representing the logic of a class
     def __repr__(self):
         """For DX: String -> Class (String representing the logic/structure of a Class)"""
         return f"CheckingAccount({self.accno}, '{self.name}', {self._balance})"
@@ -635,3 +635,6 @@ print(alex._balance)  # can access protected value
 # Using classes
 # example and explanation for each way using doc strings
 # Create error class
+
+# magic methods = only in class dunder methods
+# dunder methods = don't use as they are inbuilt/private

@@ -10,7 +10,7 @@ print(f"The current date is: {now:%d/%m/%Y}")
 print(f"The current date is: {now:%d %b %y}")
 nicedate = now.strftime(format)
 print(nicedate)
-
+# {} = interpolation
 # numeric separator
 salary = 420_000  # python ignores underscores for us :)
 print(salary)  # DX improves (readability)
