@@ -8,7 +8,7 @@ TOKEN = "f06fdf2d66c24a91a6c93111241503"
 
 # url_ex = "http://api.weatherapi.com/v1/current.json?key=f06fdf2d66c24a91a6c93111241503&q=cape%20town&aqi=no"
 
-
+# sync function, waits for each api response before moving to the next one
 # def get_temp(city):
 #     city_changed = city.replace(" ", "%20")
 #     created_url = (
@@ -20,19 +20,19 @@ TOKEN = "f06fdf2d66c24a91a6c93111241503"
 #     # print(weather_city)
 #     return f'The temperature in {weather_city["location"]["name"]} is {int(weather_city["current"]["temp_c"])}°C'
 
-
 # print(get_temp("cape town"))
 
 
 # async -> co_routine
 async def get_city_temp(city_name):
-    # show one by one printing and make it slow
+    # show one by one printing slowly
     print(f"Getting temp of {city_name}")
     await asyncio.sleep(2)
 
     city_name2 = city_name.replace(" ", "%20")
     url = f"http://api.weatherapi.com/v1/current.json?key={TOKEN}&q={city_name2}&aqi=no"
 
+    # non-blocking calls allowing for simultaneous data retrieval
     async with aiohttp.ClientSession() as session:
         async with session.get(url) as response:
             weather = await response.json()
@@ -106,37 +106,6 @@ async def get_city_temp2(city_name):
 #     return list_city_temp
 # pprint(list_city_temp, indent=4)
 
-# RAGAV ALL CODE TASK 4
-
-
-# async def get_city_name_temp(city_name):
-#     print(f"Getting temp of {city_name}")
-#     url = f"https://api.weatherapi.com/v1/current.json?key={TOKEN}&q={city_name}&aqi=no"
-#     async with aiohttp.ClientSession() as session:
-#         async with session.get(url) as response:
-#             weather = await response.json()
-#             return (weather["location"]["name"], weather["current"]["temp_c"])
-
-
-# async def main(cities):
-#     # print(await get_city_name_temp("New York"))
-#     # print(await get_city_name_temp("Hong Kong"))
-#     cities_data = [await get_city_name_temp(city) for city in cities]
-#     pprint(dict(cities_data))
-
-
-# asyncio.run(main(cities))
-
-
-# Performance
-# async def main(cities):
-#     cities_data_co_routines = [get_city_name_temp(city) for city in cities]
-#     cities_data = await asyncio.gather(*cities_data_co_routines)
-#     pprint(dict(cities_data))
-
-
-# asyncio.run(main(cities))
-
 
 # Task 4 RAGAV
 # async -> co_routine
@@ -171,16 +140,17 @@ async def main():
     # await asyncio.gather(*get_temp_all)
 
     print("Task 4")
-    # NO - does one by one and slow
+    # NO - does one by one and slow (sync)
     # print(await get_city_name_temp("New York"))
     # print(await get_city_name_temp("Hong Kong"))
     # cities_data = [await get_city_name_temp(city) for city in cities]
     # pprint(dict(cities_data))
 
-    # Performance
+    # Performance (concurrently)
     cities_data_co_routines = [get_city_name_temp(city) for city in cities]
     cities_data = await asyncio.gather(*cities_data_co_routines)
-    pprint((cities_data))
+    # list of tuples
+    pprint(cities_data)
 
 
 # async speedup!
